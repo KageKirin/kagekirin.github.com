@@ -4,7 +4,7 @@
   <title><![CDATA[Code Alchemist]]></title>
   <link href="http://kagekirin.github.com/atom.xml" rel="self"/>
   <link href="http://kagekirin.github.com/"/>
-  <updated>2012-12-02T23:28:07+09:00</updated>
+  <updated>2012-12-03T00:06:50+09:00</updated>
   <id>http://kagekirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
@@ -12,5 +12,1320 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[My Work Environment (at work, 2012)]]></title>
+    <link href="http://kagekirin.github.com/blog/2012/06/02/my-work-environment/"/>
+    <updated>2012-06-02T19:07:00+09:00</updated>
+    <id>http://kagekirin.github.com/blog/2012/06/02/my-work-environment</id>
+    <content type="html"><![CDATA[<p>One of those posts, where I rant about my work environment.</p>
+
+<p>At work, I&#8217;m pretty much bound to a Windows environment,
+since all the tools only work there.
+So, I&#8217;m running Windows7
+(to which I got upgraded just recently, for the sake of my own sanity,
+which was at stake for using Vista in 2012)
+on a DELL Precision T3500 with AMD Radeon Graphics.<br/>
+For the IDE, it&#8217;s naturally Visual Studio,
+namely Visual Studio 2008 Team System.
+Per default, I had no version of <a href="http://www.wholetomato.com/">Visual Assist X</a>,
+forcing me to buy my own license
+(talking about &#8220;tools of the trade&#8221; when you can&#8217;t have access to the swiss army knife of VS).<br/>
+I also installed <a href="http://code.google.com/p/metalscroll/">MetalScroll</a>,
+which makes finding references inside of one file pretty easy.<br/>
+And <a href="http://www.xoreax.com/">IncrediBuild</a>,
+which apparently costs way more in Japan,
+due to some dirty tricks from the Isreali Embassy (the only provider of this product in Japan),
+which tries to suck the lifeblood out of japanese software companies through their pricing.</p>
+
+<p>For the source version control,
+we&#8217;re using <a href="http://www,perforce.com">Perforce</a>,
+so I&#8217;m stuck with their tools,
+and despite there being a couple of welcome improvements in the latest versions,
+i.e. streams,
+I don&#8217;t have access to them as the server is running in older version.
+In fact, I often wish (at least 5 times a day) I could use <a href="http://www.git-scm.com">git</a> locally,
+but the git-p4 bridges don&#8217;t work that well.<br/>
+(The hg-p4 bridge does work well, but I don&#8217;t remember the way I set it up at my former employer).</p>
+
+<p>For file editing related things (other than C++),
+I&#8217;m using <a href="http://notepadplusplus.sf.net">Notepad++</a>,
+which, although not perfect,
+doesn&#8217;t give me headaches about usability issues.</p>
+
+<p>I configured P4 to use P4merge for merging files,
+since I like the 3 way-view with
+&#8220;theirs&#8221;, &#8220;base&#8221; and &#8220;ours&#8221; on the top,
+and &#8220;merge result&#8221; below.<br/>
+For diffs, I&#8217;m using a very handy tool called <a href="http://diffuse.sf.net">&#8220;Diffuse&#8221;</a>,
+which allows for super fast diff&#8217;ing with only keyboard interaction.
+(The only issue I&#8217;m having with it is that it tends to break files with japanese encoding &#8211;
+but then again, it&#8217;s the comments that are in japanese,
+and I just delete them since &#8220;you shouldn&#8217;t need to comment your code&#8221; ;p ).</p>
+
+<p>For other file related actions,
+I&#8217;m either using the vanilla explorer,
+or <a href="http://www.ghisler.com">Total Commander</a>
+(which is my preference when it comes to moving lots of files).</p>
+
+<p><a href="http://www.physics.ucla.edu/~grosenth/jwpce.html">JWPce</a>
+is my preference for writing Japanese,
+as it includes a pretty neat dictionary,
+and I&#8217;m so used to this tool,
+that I can hardly read Japanese without.<br/>
+(Yeah, I&#8217;m lazy and I know it).</p>
+
+<p>For the other dev tools,
+it&#8217;s pretty classic,
+XDK for working on Xbox360,
+and SN Tools for working on PS3.</p>
+
+<p>Oh yeah, one of the tools that come in handy is
+<a href="https://www.virtualbox.org">Oracle&#8217;s -Sun&#8217;s- Virtual Machine VirtualBox</a>.
+I have already a (several) Linux installation to automatize some backups
+and I&#8217;m running one from time to time to test software before installing it on my main system.
+It&#8217;s also pretty cool to track down hardware or driver issues that occur on the host system,
+but should not be reproducible on the VM.<br/>
+(Fun fact, the XDK tools tend to work better from within the VM than on the host system).</p>
+
+<p>And that&#8217;s pretty much it.<br/>
+I&#8217;m using some batch files to simplify a couple of workflows,
+but nothing really extraordinary.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Generalized Motion Blur (cont'd)]]></title>
+    <link href="http://kagekirin.github.com/blog/2012/05/31/generalized-motion-blur-contd/"/>
+    <updated>2012-05-31T01:17:00+09:00</updated>
+    <id>http://kagekirin.github.com/blog/2012/05/31/generalized-motion-blur-contd</id>
+    <content type="html"><![CDATA[<p>I hope to cover some more aspects and enhancements of the
+Generalized Motion Blur
+I have not treated in my previous post.</p>
+
+<p>As such there are:</p>
+
+<ul>
+<li>particle motion blur</li>
+<li>generating other blur patterns through a different kind of particles</li>
+<li>batching screen-space deformation to our scene buffer lookups.</li>
+</ul>
+
+
+<h2>Particle Motion blur</h2>
+
+<p>Particles,
+especially fast moving ones,
+should get a motion blur as well
+to improve realism.
+This can be done in the same way
+we did it for object motion blur (unskinned geometry),
+namely by computing and writing out the
+frame-based position difference,
+but there are a few things to take care of.</p>
+
+<h3>Alpha testing and translucence</h3>
+
+<p>I did not cover this in the previous post,
+but it pretty clear that alpha tested or alpha blended
+geometry ideally requires the motion blur
+to take the blending into account.<br/>
+Practically, not taking it into account
+might lead to a few artifacts,
+but I doubt they would be that visible in the final result,
+so we can ignore this part
+and simply blend this motion vector
+on top of the motion in the buffer.
+(We can alter the motion length by some factor
+to account translucency
+and to make it less apparent).</p>
+
+<h3>World transform matrices</h3>
+
+<p>Depending on your architecture,
+particles might get computed a bit differently
+from normal objects.
+While objects can be drawn one by one
+using their world transform matrix,
+this is likely to not being that optimal
+when it comes to drawing thousands of particles.
+In this, it is going to require
+a little extra engineering effort
+to buffer the last frame&#8217;s particle positions
+and to inject them into the drawing of this frame&#8217;s ones
+during the motion blur pass.</p>
+
+<p>As this will double the drawcall cost,
+it seems wiser to detect the particles that really
+need motion blur,
+and to just draw these.</p>
+
+<h3>Geometry deformation</h3>
+
+<p>I covered this method in my previous post,
+stating that its result might be unpredictable.
+This still holds true for complex geometry,
+but in the case of particles,
+the geometry ought not be too complex,
+since most particles are just quads
+rendered as billboards.</p>
+
+<p>Since rendering motion blur
+on top of already blurred particles
+will look pretty bad,
+such motion blur deformed particles should
+rendered after the motion blur pass.
+But there is another type of particles,
+that could avoid us the work required to
+either blur thousands of particles at once,
+or to separate the particle passes into
+motion-blur-deformed and normal ones.</p>
+
+<h2>Motion blur particles</h2>
+
+<p>(I did not find a better name despite intensive brainstorming, so beer with it).</p>
+
+<p>The idea is to (slightly) abuse
+the generalized motion blur method
+by writing motion vectors
+directly into the motion buffer.
+This allows us to have a finer control
+over what kind of motion vectors get written,
+as they are based on a &#8220;motion vector&#8221; texture.<br/>
+For example,
+a motion texture can hold a unique direction
+&#8211; the texture being then of one color with no grading &#8211;
+and turn this vector to the &#8220;right&#8221; direction through rotation
+to write a motion vector.</p>
+
+<p>But since this texture based,
+we can go one step further,
+and use this method to generate
+other blurs,
+that are usually drawn in other passes.
+Best example would a radial blur,
+which is nothing more than a linear blur,
+following centroid lines.</p>
+
+<p>In fact, this is the point
+where the generalized motion blur
+can play its strength,
+by allowing us to batch more
+effects into one single pass.<br/>
+The next section covers even more batching.</p>
+
+<h2>Screen-space warping/refraction/deformation</h2>
+
+<p>The main idea is
+to batch particle based effects,
+that produce a refractive-like visual,
+like heat-haze or underwater &#8220;wobbling&#8221;,
+into the motion blur pass.<br/>
+Since the linear blur pass
+mostly consists of texture fetches
+from the scene buffer,
+we can piggy-back on this
+by &#8220;jittering&#8221; or &#8220;warping&#8221;,
+thus deforming,
+the screen-space texture coordinates.</p>
+
+<p>To batch this into our existing framework,
+we need to change the layout of the motion buffer a bit.
+Since the &#8220;warping&#8221; is nothing more
+than offsetting the screen-space coordinates,
+it requires 2 channels to be effective.
+Hence, the motion vector has to be reduced to 2 channels as well,
+which can be achieved by projecting the motion vector
+into screen-space first,
+and then write its 2 values
+into the 2 remaining channels.</p>
+
+<p>Using a QWVU texture format
+(Q8W8V8U8 or Q16W16V16U16,
+but not A2W10V10U10 since we need the Q-channel as well),
+the new buffer layout looks as follows:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[    U8V8     ][     W8Q8      ]
+</span><span class='line'>[ssVelocity.xy][ssWarpOffset.xy]</span></code></pre></td></tr></table></div></figure>
+
+
+<p>(I reversed the channel order for simplicity).</p>
+
+<h3>Drawing offsets</h3>
+
+<p>Just as with the motion vectors,
+we can write the offset vectors
+into the 2 channels of the motion buffer.
+Writing needs to be additive as well,
+to accumulate offset movements
+from different layers
+of particles,
+so nothing really differs
+from the motion (particle) passes,
+but the target channels.
+To avoid writing into the wrong channels,
+one can set up write masks before the draw pass
+(and reset them at the end).</p>
+
+<p>Particles need to be Z-tested against the Z-buffer
+to mask out foreground geometry,
+and can profit from being smoothly depth-blended,
+by modulating their strength
+with respect to a factor
+depending on the Z-buffer pixel depth
+and the particle&#8217;s.
+But these conditions have to fulfilled
+for the motion blur particles pass
+as well.</p>
+
+<p>To further optimize the particle passes,
+it&#8217;s possible to batch drawing
+the motion blur particles
+and the warp particles
+at the same,
+going as far as modifying the shader
+to draw both values at once as needed.</p>
+
+<p>So far for the second post on the
+Generalized Motion Blur method.
+We covered which particle passes
+can be batched
+and why drawing all particles again
+to generate a motion vector field on them
+might not be such a good idea.</p>
+
+<p>In the next posts of the series,
+We will cover the different aspects
+of the actual linear blur pass,
+and show even more effects
+that can be batched into it.</p>
+
+<p><strong>tl;dr</strong><br/>
+Bad idea: Drawing thousands of particles twice to generate motion blur on them.<br/>
+Good idea: Drawing special particles with motion vectors is more efficient.<br/>
+Super idea: Batch screen-space warping particles into the motion particles.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Generalized Motion Blur (idea)]]></title>
+    <link href="http://kagekirin.github.com/blog/2012/05/26/generalized-motion-blur-idea/"/>
+    <updated>2012-05-26T14:03:00+09:00</updated>
+    <id>http://kagekirin.github.com/blog/2012/05/26/generalized-motion-blur-idea</id>
+    <content type="html"><![CDATA[<p>The are several existing techniques
+to apply Motion Blur,
+each with a slightly different purpose and outcome.</p>
+
+<p>I will try to roughly classify those techniques
+by showing the method behind,
+and then propose a possible generalization
+that allows to apply those different techniques to the same scene
+in a computation economical way.</p>
+
+<p>Ideally, rendering at high framerates (>60 fps)
+would not require any motion blur,
+as the human brain would create
+the impression of blur
+to compensate for the
+eye&#8217;s framerate of 24 fps.
+Sadly, such an approach is
+technically
+&#8211; rendering a 60+ frames
+on current gen consoles
+is hardly possibly
+or would require other limitations
+in terms of rendering quality &#8211;
+and artistically limited
+&#8211; motion blur might be wanted
+to express certain aesthetics &#8211;
+hence not practical.</p>
+
+<p>The main goal is
+to apply several kinds
+of motion blur
+to a given scene
+in a as little
+drawcalls and fullscreen passes as possible,
+and also
+using a little framebuffers (memory consumption) as possible.</p>
+
+<p>I will also write about
+possible ways to further optimize
+the processus.</p>
+
+<h2>Types of Motion Blur</h2>
+
+<h3>Nature of Motion Blur</h3>
+
+<p>Before we begin,
+let&#8217;s define
+the nature of a motion blur.</p>
+
+<p>When we perceive
+a motion to be blurred,
+this is the effect of our eyes
+not being able
+to keep up with the movement,
+hence it appearing doubled,
+or blurred.</p>
+
+<p>Similarly with a camera,
+a motion blur is the result
+of a movement velocity being higher
+than shutter speed of the camera,
+respectively,
+higher than the CMOS capture speed.</p>
+
+<h3>Last Frame Blended Motion Blur</h3>
+
+<p>This motion blur processus consists
+in blending the (n) last frame(s)
+with the current frame,
+which results in an
+impression of afterimage.</p>
+
+<p>In the old OpenGL versions,
+it could be implemented using an Accumulation Buffer,
+but on modern machines,
+I would implement it
+to use the last frame&#8217;s final image
+(i.e. blurred with frame (t-2)&#8217;s final image)
+as an input to blend with the current frame&#8217;s final image.
+This would result in a series of recursive blurs,
+which might give a nice result.</p>
+
+<p>On the downside, this would have me
+store a fullres buffer of frame (t-1),
+and possible fast camera movements
+might yield very strange results,
+such as strange afterimages instead of blurred lines.</p>
+
+<h3>Object Deformation Motion Blur</h3>
+
+<p>This motion blur procedure consists
+in deforming moving objects
+in the vertex shader
+along their
+frame interpolated movement vector.</p>
+
+<p>It was used for example in the
+<a href="http://developer.amd.com/archive/legacydemos/pages/ATIRadeon9700Real-TimeDemos.aspx">Radeon 9700 Animusic &#8220;Pipe Dream&#8221; demo from ATI</a>
+to apply a motion blur on the balls.</p>
+
+<p>The difficulty of the method lies
+in the vertex shader
+where we would need to transform
+the vertices differently,
+according to
+their position relative to the center of the object
+and the motion vector.
+This works for simple objects where
+the start and end of said object are easily defined
+(e.g. spheres, as in the AMD demo),
+but becomes more difficult
+as the object&#8217;s shape gets more complex.</p>
+
+<p>(Although it could be done by
+approximating each vertex to a unit sphere
+around the center of the object
+and distort vertices
+from the lower hemisphere
+with respect to the motion vector.
+Something like this (untested):</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>float3 posRadius = normalize(os_position);   //unit sphere radius vector for a given vertex in object space
+</span><span class='line'>float hemisphere = sign(dot(posRadius, normalize(vMotion)));  //define which part of the sphere of the sphere we're on, w/r to the motion vector
+</span><span class='line'>os_position += vMotion * saturate(-hemisphere);   //distort the vertex along the motion vector when on the lower hemisphere
+</span><span class='line'>// continue vertex transform as usual</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The result of this is unpredictable on complex geometry, though,
+and might lead to strangely deformed shapes).</p>
+
+<p>On modern PC GPUs, this could be solved by issuing
+more vertices to be drawn via a geometry shader.
+Current gen console GPUs on the other don&#8217;t
+support geometry shader per se,
+making this approach not practical
+for cross-platform titles.</p>
+
+<h3>Camera Motion Blur</h3>
+
+<p>This blur is applicable as post-processing effect,
+as it does not modify any geometry.
+It consists of using the current and the previous frames&#8217;
+view-projection matrices to reproject the Z-buffer
+into world space, and to build a difference in position (the movement)
+from the coordinates.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>float4x4 invViewProj_curr;
+</span><span class='line'>float4x4 invViewProj_prev;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>float zDepth = tex2D(depthBuffer, ssTC);
+</span><span class='line'>float4 sscoords = float4x4(ssTC, zDepth, 1);
+</span><span class='line'>
+</span><span class='line'>float4 wpos_curr = mul(invViewProj_curr, sscoords);
+</span><span class='line'>float4 wpos_prev = mul(invViewProj_prev, sscoords); 
+</span><span class='line'>
+</span><span class='line'>float4 wmov = wpos_curr - wpos_prev;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We can then project the movement vector back to screen space
+and use it to apply a linear blur on the scene texture.</p>
+
+<p>Note: this method was presented by nVidia in the
+<a href="http://http.developer.nvidia.com/GPUGems3/gpugems3_ch27.html">GPU Gems 3</a>.</p>
+
+<h3>Object Motion Blur</h3>
+
+<p>This blur method requires the blurred objects
+to be drawn in another render pass,
+which resulting buffer is used later
+to apply a per-pixel linear blur.</p>
+
+<p>For each object,
+we pass its current and previous world matrices as input,
+project the project into screen space,
+and write the per-pixel movement
+computed from transforming each of the objects vertices
+by the current and previous world space matrices.</p>
+
+<p>Most of the work can be done in the vertex shader,
+and the position difference can be done in the pixel shader for accuracy.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>float4x4 World_curr;
+</span><span class='line'>float4x4 World_prev;
+</span><span class='line'>float4x4 ViewProj;
+</span><span class='line'>
+</span><span class='line'>struct VS_OUT
+</span><span class='line'>{
+</span><span class='line'>    float4 HPos : POSITION;
+</span><span class='line'>    float4 wp_curr : TEXCOORD0;
+</span><span class='line'>    float4 wp_prev : TEXCOORD1;
+</span><span class='line'>};
+</span><span class='line'>
+</span><span class='line'>VS_OUT VS_main(float4 Position : POSITION)
+</span><span class='line'>{
+</span><span class='line'>    VS_OUT out = (VS_OUT)01;
+</span><span class='line'>    
+</span><span class='line'>    float4 w_curr = mul(World_curr, Position);
+</span><span class='line'>    float4 w_prev = mul(World_prev, Position);
+</span><span class='line'>    
+</span><span class='line'>    out.HPos = mul(ViewProj, w_curr);
+</span><span class='line'>    out.wp_curr = w_curr;
+</span><span class='line'>    out.wp_prev = w_prev;
+</span><span class='line'>    
+</span><span class='line'>    return out;
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>float4 PS_main(VS_OUT in) : COLOR0
+</span><span class='line'>{
+</span><span class='line'>    float4 Color = (float4)0;
+</span><span class='line'>    
+</span><span class='line'>    float4 wp_diff = in.wp_curr - in.wp_prev;
+</span><span class='line'>    Color = wp_diff;
+</span><span class='line'>    
+</span><span class='line'>    return Color;
+</span><span class='line'>}
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then again, as for the Camera motion blur,
+we use this movement vector
+(projected into screen space)
+as input to the linear blur.</p>
+
+<h3>Animation Motion Blur</h3>
+
+<p>This method is an extension
+upon the object motion blur
+for skinned objects
+that takes the animation into account
+to build the motion vector.</p>
+
+<p>As such, the motion vector will be
+the difference between
+the world position of one vertex
+using the current skin and world space matrices
+and the world position of the same vertex
+using the previous skin and world space matrices.</p>
+
+<p>The algorithm differs
+depending on how
+the skinning is computed,
+but given the case it&#8217;s done on the GPU,
+it will look like follows:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>float4x4 World_curr;
+</span><span class='line'>float4x4 World_prev;
+</span><span class='line'>float4x4 ViewProj;
+</span><span class='line'>
+</span><span class='line'>float4x4 skinning_matrices_curr[n];
+</span><span class='line'>float4x4 skinning_matrices_prev[n];
+</span><span class='line'>
+</span><span class='line'>struct VS_OUT
+</span><span class='line'>{
+</span><span class='line'>    float4 HPos : POSITION;
+</span><span class='line'>    float4 wp_curr : TEXCOORD0;
+</span><span class='line'>    float4 wp_prev : TEXCOORD1;
+</span><span class='line'>};
+</span><span class='line'>
+</span><span class='line'>VS_OUT VS_main(
+</span><span class='line'>    float4 Position : POSITION,
+</span><span class='line'>    float4 Weight : TEXOORD0,
+</span><span class='line'>    int4 Indeces : TEXCOORD1
+</span><span class='line'>)
+</span><span class='line'>{
+</span><span class='line'>    VS_OUT out = (VS_OUT)01;
+</span><span class='line'>    
+</span><span class='line'>    float4 skinnedPos_curr = computeSkinnedVertex(Position, Indeces, Weight, skinning_matrices_curr);
+</span><span class='line'>    float4 skinnedPos_prev = computeSkinnedVertex(Position, Indeces, Weight, skinning_matrices_prev);    
+</span><span class='line'>    
+</span><span class='line'>    float4 w_curr = mul(World_curr, skinnedPos_curr);
+</span><span class='line'>    float4 w_prev = mul(World_prev, skinnedPos_prev);
+</span><span class='line'>    
+</span><span class='line'>    out.HPos = mul(ViewProj, w_curr);
+</span><span class='line'>    out.wp_curr = w_curr;
+</span><span class='line'>    out.wp_prev = w_prev;
+</span><span class='line'>    
+</span><span class='line'>    return out;
+</span><span class='line'>}
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The final movement vector
+and linear blur computation
+is the same as in the
+Object motion blur.</p>
+
+<h2>Generalization</h2>
+
+<p>Since 3 (4 with some algorithmic changes) of these methods
+consist of writing the motion vector
+into a motion (or velocity) buffer,
+and using this buffer as input to
+a per-pixel linear blur,
+generalizing the blurs seems straightforward.</p>
+
+<p>We choose a texture format
+that allows blending
+and signed values.
+On Xbox360, such a format would be the 32-bit
+<code>D3DFMT_Q8W8V8U8</code>
+or its 64-bit counterpart
+<code>D3DFMT_Q16W16V16U16</code>.</p>
+
+<p>Since the Xenon GPU does not allow floating-point textures
+to be blended, it would be impractical to use such formats
+and doing the blending after a readback of the previous draw pass,
+as this would imply a lot of resolving and texture fetches.</p>
+
+<p>Unsigned formats, on the other hand, make the
+writing of negative values impossible,
+hence they fall out of choice for screen or world space motion vectors.</p>
+
+<p>As such, the generalized algorithm looks as follows:<br/>
+1.  write the Z-Buffer reprojected Camera motion into the velocity buffer as an opaque blend to overwrite any existing value from the previous frame.<br/>
+2.  write the Object motion with Z-testing against the previously used Z-buffer to avoid writing more than necessary. Blending should be additive.<br/>
+3.  write the Skinned Object motion in the same way, blending additively.<br/>
+4.  write some motion vectors (more on that in an ulterior post)
+5.  resolve into a texture of possibly the same format as the render target surface.
+6.  using this velocity texture, apply a per-pixel linear blur on the scene texture.</p>
+
+<h2>More blurring&#8230;</h2>
+
+<p>We can optimize and even batch more blurring into the motion blur pass,
+but I will post more on it a later post.</p>
+
+<p><strong>tl;dr</strong><br/>
+There are several types of Motion blur passes,
+and they can be batched for a more optimal render process.
+More on blurring later.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Test-Driven Shader Development (an idea)]]></title>
+    <link href="http://kagekirin.github.com/blog/2012/04/05/test-driven-shader-development-an-idea/"/>
+    <updated>2012-04-05T00:57:00+09:00</updated>
+    <id>http://kagekirin.github.com/blog/2012/04/05/test-driven-shader-development-an-idea</id>
+    <content type="html"><![CDATA[<p>This post is more about an idea I had, than about its actual implementation.</p>
+
+<p>Test-driven Shader Development</p>
+
+<h2>Base idea</h2>
+
+<p>When doing shader development,
+be it for R&amp;D purposes or in a production environment,
+you will run into a couple of possible issues:</p>
+
+<ul>
+<li>shader not compiling</li>
+<li>shader not linking (in GL)</li>
+<li>incompatible vertex and pixel shader due to interpolator differences (Cg, DX)</li>
+<li>shader not running due to wrong input</li>
+<li>shader running but not giving the expected result (algorithmic error)</li>
+<li>shader not returning the expected result due to wrong input</li>
+<li>wrong output from one shader breaking another shader (happens often when playing with lighting models)</li>
+<li>shader computationally too heavy (instruction-bound or texture-fetch-bound)</li>
+<li>a lot of other stuff that can go wrong, and by Murphy&#8217;s law, will go wrong.</li>
+</ul>
+
+
+<p>In many of these cases,
+nailing the problem down to a few causes,
+at best a single one,
+will allow for fast solutions
+and let the programmer focus on the more interesting parts.</p>
+
+<h2>Compiler/Driver issues</h2>
+
+<p>Those are mostly issues related to building and loading the shader.</p>
+
+<p>The straightforward solution is to implement hot reload,
+i.e. reloading while the engine or test environment is running,
+and this everytime the shader file is saved.</p>
+
+<p>The apported benefit is that this will allow for shader cooking,
+i.e. editing and tweaking of the shader depending on its &#8220;visual&#8221; result.<br/>
+(One of the features I loved on CryENGINE3, and that I&#8217;m totally missing on the current engine at work).</p>
+
+<p>An optimization to this:<br/>
+reload everytime a hash value depending on the full shader source,
+i.e. the <code>main</code> function file and all of its includes, changes.</p>
+
+<h2>Input issues</h2>
+
+<p>The straightforward solution is to have &#8220;static&#8221; inputs.
+Those can be:</p>
+
+<ul>
+<li>static textures to simulate a GBuffer</li>
+<li>static camera values</li>
+<li>static uniform settings</li>
+<li>static vertex settings</li>
+</ul>
+
+
+<p>In the same idea, being able to tweak parameters and see its outcome is likely to help finding input values that lead to computational errors. (Div-by-zero anyone?).</p>
+
+<h2>Output issues</h2>
+
+<p>This kind of issues can be caught by creating a difference image to either</p>
+
+<ul>
+<li>a &#8220;reference&#8221; image (e.g. created through raytracing instead of rendering)</li>
+<li>the last &#8220;good&#8221; result image</li>
+</ul>
+
+
+<p>The frame &#8220;correctness&#8221; is the amount of errors/differences in relation to the reference image.</p>
+
+<h2>Algorithmic issues</h2>
+
+<ul>
+<li>using &#8220;random&#8221; inputs
+
+<ul>
+<li>shuffle inputs several times, test if output is correct</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>Saving the tests</h2>
+
+<p>A great addition for this kind of framework is to save the test &#8220;artifacts&#8221; (in Jenkins&#8217; terms) along with its inputs to allow for later reproducibility.</p>
+
+<ul>
+<li>inputs: the shader files, static input values, user input values</li>
+<li>artifacts as such would be: random input values, output frames</li>
+</ul>
+
+
+<h2>Generalization</h2>
+
+<p>Such a framework would be great to be generalized to work with both Direct3D (several versions, but at least DX9.5 for Xenon and DX11.1) and OpenGL (several versions as well, but ES2 would make my day).
+And support for the exots like GX2 (&#8220;Café&#8221;) and GCM (PS3, Vita). (The shader in latter systems are based on GLSL and Cg, respectively, making the porting easier).</p>
+
+<p>Furthermore, OpenCL and ComputeShaders would equally profit fropm such a system.
+(As would SPU jobs do, but that&#8217;s limited to a certain type of hardware).</p>
+
+<p>A general solution would allow to have &#8220;any&#8221; kind of data
+processed by &#8220;any&#8221; kind of &#8220;processor&#8221;, be it DX, GL, CL, CUDA or C++AMP.</p>
+
+<p><strong> tl;dr</strong> Is there some student/grad student that would feel like implementing such a system as a master/diploma/doctorate thesis?</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Jekyll plugin for Graphviz]]></title>
+    <link href="http://kagekirin.github.com/blog/2012/04/04/jekyll-plugin-for-graphviz/"/>
+    <updated>2012-04-04T23:28:00+09:00</updated>
+    <id>http://kagekirin.github.com/blog/2012/04/04/jekyll-plugin-for-graphviz</id>
+    <content type="html"><![CDATA[<p>I stumbled over this small Jekyll plugin for Octopress
+which allows to use <a href="http://www.graphviz.org/">graphviz</a> notation inside a blog post.<br/>
+<a href="http://dryman.github.com/blog/2012/04/04/jekyll-graphviz-plugin/">original link</a></p>
+
+<p>Obviously, you need to have graphviz installed on your generating system.
+(<code>port install graphviz</code> should do it if you have MacPorts installed, or well, <a href="http://mxcl.github.com/homebrew/">Brew</a>).</p>
+
+<p>Here&#8217;s a short test</p>
+
+<pre><code>{\% graphviz \%}
+  digraph G {
+  compound=true;
+  subgraph cluster0 {
+    a -&gt; b;
+    a -&gt; c;
+    b -&gt; d;
+    c -&gt; d;
+  }
+  subgraph cluster1 {
+    e -&gt; g;
+    e -&gt; f;
+  }
+  b -&gt; f [lhead=cluster1];
+  d -&gt; e;
+  c -&gt; g [ltail=cluster0, lhead=cluster1];
+  c -&gt; e [ltail=cluster0];
+  d -&gt; h;
+}
+{\% endgraphviz \%}
+</code></pre>
+
+<p>should give the diagram below:</p>
+
+<p>Liquid error: undefined method `join&#8217; for #&lt;String:0x007fe3f4140ed0></p>
+
+<p>Now, where I see great use for this plugin (and probably gonna use it in the future), is to generate UML diagrams to describe a given architecture, flow charts to describe data or work flows, or schemata describing some algorithm.</p>
+
+<p>You probably should install the plugin from
+<a href="https://github.com/dryman/dryman.github.com/blob/src/plugins/graphviz_block.rb">its repository</a>
+or wait until it has been integrated into the mainline Octopress branch.</p>
+
+<p>And for the hardcore coders, it should be possible to add it to Mulberry/Toura as well, as it&#8217;s based on Jekyll as well.
+(Although I see hardly any need to generate diagrams for an app. Then again, there might be a need for it).</p>
+
+<p>EDIT: I just saw a perfect application for graphs in an app that I&#8217;m working on, namely, a diagram for tournaments or championships, to show how the candidates (fighters in this case) advance from round to round.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[More Mulberry]]></title>
+    <link href="http://kagekirin.github.com/blog/2012/03/22/more-mulberry/"/>
+    <updated>2012-03-22T01:25:00+09:00</updated>
+    <id>http://kagekirin.github.com/blog/2012/03/22/more-mulberry</id>
+    <content type="html"><![CDATA[<p>I found <a href="http://www.slideshare.net/rmurphey/getting-started-with-mulberry">this presentation about Mulberry</a> and wanted to share it.<br/>
+It explains the core functionality of Mulberry.</p>
+
+<p><strong>tl;dr</strong> Thinks to retain:</p>
+
+<p><em>Routes</em> manage high-level application state.</p>
+
+<p><em>Components</em> receive and render data and react to user input.</p>
+
+<p><em>Capabilities</em> provide data to components and broker communications between them.</p>
+
+<p><em>Page definitions</em> are reusable groupings of components and capabilities.</p>
+
+<p><em>Stores</em> persist data on the device, make that data query-able, and return model instances.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Mulberry Jam (cont'd)]]></title>
+    <link href="http://kagekirin.github.com/blog/2012/03/14/mulberry-jam-contd/"/>
+    <updated>2012-03-14T01:00:00+09:00</updated>
+    <id>http://kagekirin.github.com/blog/2012/03/14/mulberry-jam-contd</id>
+    <content type="html"><![CDATA[<p>Follow up on last week&#8217;s post about Mulberry.</p>
+
+<p>There have been a couple of changes with Xcode 4.3, iOS 5.1 and some updates in Mulberry that gave me a hard time&#8230;
+In the end, I had to re-scaffold my test-apps from scratch and move my content over because of a few noteworthy changes.<br/>
+Incidentally, those changes concern the parts I did not treat in detail in my last post (or just brushed over without investigating it into depth),
+thus this follow-up makes a lot of sense.</p>
+
+<p>Giving the demo-app &#8220;kitchensink&#8221; (located in <code>demos</code>) a closer look cleared a couple of questions I still had, so here I go:</p>
+
+<h2>Customization</h2>
+
+<h3>Page-defs</h3>
+
+<p>A page-def defines the template for generated pages, i.e. the layout, components and capabilities to be used on a page.<br/>
+Custom page-defs can be generated with the command below:</p>
+
+<pre><code>mulberry create page_def &lt;name&gt;
+</code></pre>
+
+<p>which will create a file at <code>&lt;app-root&gt;/page_defs/&lt;name&gt;.yml</code>.<br/>
+More info <a href="https://github.com/Toura/mulberry/wiki/Page-Definitions">here</a></p>
+
+<p>All pre-existing page-defs lie in <code>&lt;mulberry-root&gt;/base_apps/toura/page_defs</code> and have their purpose written in their name, making it easy to guess what they may be intended for.<br/>
+Here&#8217;s a list of them, subject to changes as new versions arise:</p>
+
+<pre><code>audio-with-images-phone.yml
+audio-with-images-tablet.yml
+debug.yml
+default.yml
+favorites.yml
+feed-item.yml
+feed-list-phone.yml
+feed-list-tablet.yml
+full-screen-images.yml
+google-map-phone.yml
+google-map-tablet.yml
+grid-view.yml
+home-phone.yml
+home-tablet.yml
+home-with-header-phone.yml
+home-with-header-tablet.yml
+hotspots.yml
+images-and-text-phone.yml
+images-and-text-tablet.yml
+location-list.yml
+node-gallery.yml
+search.yml
+videos-and-text-phone.yml
+videos-and-text-tablet.yml
+</code></pre>
+
+<p>If you are creating your own page-defs for more than one project, it would probably make sense to put them inside this folder (and to commit them back to the Mulberry project in order to contribute to it).</p>
+
+<p>A page-def defines which components will be visible for pages based on it. E.g.:</p>
+
+<pre><code>home-with-header-phone:
+  screens:
+  - name: index
+    backgroundImage: true
+    regions:
+    - className: header-image
+      components:
+      - PageHeaderImage
+
+    - scrollable: true
+      components:
+      - BodyText
+      - ChildNodes
+
+    - className: nav
+      components:
+      - AppNav
+</code></pre>
+
+<h3>Components</h3>
+
+<pre><code>mulberry create component &lt;name&gt;
+</code></pre>
+
+<p>which will create a Dojo UI component at <code>&lt;app-root&gt;/app/components/&lt;name&gt;.js</code> and <code>&lt;app-root&gt;/app/components/&lt;name&gt;/&lt;name&gt;.haml</code>).<br/>
+See <a href="https://github.com/Toura/mulberry/wiki/Creating-Custom-Components">here</a> for more info.</p>
+
+<h3>Capability</h3>
+
+<p><strong>obsolete</strong></p>
+
+<pre><code>mulberry create capability &lt;name&gt;
+</code></pre>
+
+<p>which will create a file at <code>&lt;app-root&gt;/javascript/capabilities/&lt;name&gt;.js</code>.<br/>
+<a href="https://github.com/Toura/mulberry/wiki/Capabilities">More info</a></p>
+
+<h3>Datasource</h3>
+
+<pre><code>mulberry create datasource &lt;name&gt;
+</code></pre>
+
+<p>which will create a JSON file at <code>&lt;app-root&gt;/assets/data/&lt;name&gt;.json</code>. It can hold any data (as long as it&#8217;s valid JSON) and it&#8217;s up to the app to implement the functionality to read and use it.</p>
+
+<h3>Feature flags</h3>
+
+<p>See <a href="https://github.com/Toura/mulberry/wiki/Feature-Flags">here</a> for info on feature flags that determine whether a given feature is active or not.</p>
+
+<h2>Xcode-side customization</h2>
+
+<h3>App Icon, Splash Screen, and Project file</h3>
+
+<p>When generating the app, the default PhoneGap app icon and splash screen, as well as the default Toura (xcodeproj) projects are copied into the app&#8217;s <code>&lt;app-root&gt;/build</code> folder,
+where they can be further customized. (Although I&#8217;m not sure if re-generating the app overwrites the customized versions).</p>
+
+<p>The source files are located at <code>&lt;mulberry-root&gt;/builder/project_templates/iOS/Toura</code> for the projects and further below in <code>&lt;mulberry-root&gt;/builder/project_templates/iOS/Toura/Resources/icons</code>
+and <code>&lt;mulberry-root&gt;/builder/project_templates/iOS/Toura/Resources/splash</code> respectively for icons and splash screens.</p>
+
+<p>It would be a nice extension to Mulberry if I could refer to my custom icons, loading screens, etc. in the config.yml and having those replace the default versions.</p>
+
+<h3>Universal build</h3>
+
+<p>At the moment, the iPhone and iPad have 2 separate projects (<code>Toura.xcodeproj</code> and <code>Toura-iPad.xcodeproj</code>).
+But I guess, having a third <code>Toura-universal.xcodeproj</code> for universal apps might be another welcome extension.</p>
+
+<h3>Automatic build</h3>
+
+<p>Command line and Jenkins integration
+<a href="http://nachbaur.com/blog/building-ios-apps-for-over-the-air-adhoc-distribution">This link</a> looks helpful.</p>
+
+<p><strong>tl;dr</strong> I hope this short guide was useful to you.<br/>
+I&#8217;ve created a <a href="http://kagekirin.github.com/help/mulberry-cheat-sheet.html">help page</a> and although it&#8217;s more a reminder for myself, you can use it as an easy overview.</p>
+
+<p>Next up: Further Mulberry app customization &#8211; adapting style and layout.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[An outlook and some orientation]]></title>
+    <link href="http://kagekirin.github.com/blog/2012/03/01/an-outlook-and-some-orientation/"/>
+    <updated>2012-03-01T00:17:00+09:00</updated>
+    <id>http://kagekirin.github.com/blog/2012/03/01/an-outlook-and-some-orientation</id>
+    <content type="html"><![CDATA[<p>What will this blog be about?</p>
+
+<p>I stated in my opening post that I will blog about graphics programming, programming on a general level, and add some tadbits about web programming. To concretize this plan, or rather as a TODO list, I wrote this post.</p>
+
+<h2>Web programming</h2>
+
+<ul>
+<li>mostly about Octopress, how to, or better, how I customize parts of it.</li>
+<li>some HTML5 and WebGL things I try out.</li>
+<li>things that go hand in hand with the next topic</li>
+</ul>
+
+
+<h2>App programming</h2>
+
+<ul>
+<li>Using PhoneGap to create web technology-based iOS apps
+&#8211;  automating parts of the build process</li>
+<li>Using Mulberry to create web technology-based iOS apps</li>
+<li>Other tools to create iOS apps</li>
+</ul>
+
+
+<h2>Graphics programming</h2>
+
+<ul>
+<li>Algorithms I implement either at work or at home</li>
+<li>Explanations about graphics algorithms</li>
+<li>Personal research</li>
+</ul>
+
+
+<h2>General programming</h2>
+
+<ul>
+<li>Refactoring</li>
+<li>Optimization</li>
+<li>Things I run into at work</li>
+<li>The &#8220;dark magic&#8221; of language mixing
+&#8211;  Preprocessor and templates
+&#8211;  Obj-C and C++ templates (I see you gasping in horror at the sheer idea of this).
+&#8211;  Preprocessor code generation</li>
+</ul>
+
+
+<h2>Game programming</h2>
+
+<ul>
+<li>Algorithms for game logic</li>
+<li>Framework architecture</li>
+<li>Other findings</li>
+</ul>
+
+
+<h2>Unity3D programming</h2>
+
+<ul>
+<li>C# in Unity</li>
+<li>Learning progress</li>
+<li>Shaders in Unity</li>
+</ul>
+
+
+<h2>Development tools</h2>
+
+<ul>
+<li>VisualStudio</li>
+<li>Xcode</li>
+<li>Perforce (mostly how much I despise this system)</li>
+<li>Git</li>
+<li>Mercurial</li>
+<li>Diffing</li>
+</ul>
+
+
+<h2>Papers</h2>
+
+<p>I might want to write (more or less academic) papers and submit them for review. You will find them here as well.</p>
+
+<p>I will probably edit this list over time&#8230;</p>
+
+<p><strong> tl;dr </strong><br/>
+I have no clue what I will write about on this blog. But be sure that it&#8217;ll be code-related.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Playing with Octopress -- Custom Asides]]></title>
+    <link href="http://kagekirin.github.com/blog/2012/02/22/playing-with-octopress-custom-asides/"/>
+    <updated>2012-02-22T01:31:00+09:00</updated>
+    <id>http://kagekirin.github.com/blog/2012/02/22/playing-with-octopress-custom-asides</id>
+    <content type="html"><![CDATA[<p>If you&#8217;ve followed this blog, you might have noticed a couple of changes in the last days.
+In fact, I&#8217;ve been playing around with customizing Octopress and added a couple of custom asides.</p>
+
+<h2>Coderwall</h2>
+
+<p>I wanted to add my Coderwall badges in the asides. A bit of googling lead me to <a href="http://tzangms.com">another Octopress blog</a>, which was using <a href="http://mizzy.org/blog/2012/01/13/coderwall-badges-on-the-sidebar/">Mizzy</a>&#8217;s code to display the badges. From there, it was pretty easy to extract the Javascript code from the page source. I only found the original author&#8217;s page later today, but by then, I had already a working version.</p>
+
+<p>As customization on the original code, I added the img@alt and img@title attributes to be generated from Coderwall&#8217;s JSON response data. This gives a nice addition for hovering over the badge to get its description, and an alternative description for non-graphic browsers.</p>
+
+<figure class='code'><figcaption><span> (coderwall.html)</span> <a href='http://kagekirin.github.com/downloads/code/../../_includes/asides/coderwall.html'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>{% if site.coderwall_user %}
+</span><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Coderwall Badges<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;p&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="kd">function</span> <span class="nx">display_coderwall</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">badges</span> <span class="o">=</span> <span class="nx">args</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;badges&quot;</span><span class="p">];</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">wall</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">for</span> <span class="p">(</span> <span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">badges</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>          <span class="kd">var</span> <span class="nx">alt_txt</span> <span class="o">=</span> <span class="nx">badges</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">];</span>
+</span><span class='line'>          <span class="kd">var</span> <span class="nx">title_txt</span> <span class="o">=</span> <span class="nx">badges</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; - &#39;</span> <span class="o">+</span> <span class="nx">badges</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="s2">&quot;description&quot;</span><span class="p">];</span>
+</span><span class='line'>          <span class="nx">wall</span> <span class="o">+=</span> <span class="s1">&#39;&lt;a href=&quot;http://coderwall.com/{{site.coderwall_user}}/&quot;&gt;&lt;img src=&quot;&#39;</span>
+</span><span class='line'>            <span class="o">+</span> <span class="nx">badges</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="s2">&quot;badge&quot;</span><span class="p">]</span>
+</span><span class='line'>            <span class="o">+</span> <span class="s1">&#39;&quot; width=&quot;48&quot; height=&quot;48&quot; alt=&quot;&#39;</span> <span class="o">+</span> <span class="nx">alt_txt</span>
+</span><span class='line'>            <span class="o">+</span> <span class="s1">&#39;&quot; title=&quot;&#39;</span> <span class="o">+</span> <span class="nx">title_txt</span>
+</span><span class='line'>            <span class="o">+</span> <span class="s1">&#39;&quot;/&gt;&lt;/a&gt;&#39;</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">wall</span><span class="p">);</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="nt">&lt;/script&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://coderwall.com/{{site.coderwall_user}}.json?callback=display_coderwall&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>  {% if site.coderwall_show_endorse_link %}
+</span><span class='line'>  <span class="nt">&lt;p&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://coderwall.com/{{site.coderwall_user}}&quot;</span><span class="nt">&gt;&lt;img</span> <span class="na">src=</span><span class="s">&quot;http://api.coderwall.com/{{site.coderwall_user}}/endorsecount.png&quot;</span> <span class="nt">/&gt;&lt;/a&gt;&lt;/p&gt;</span>
+</span><span class='line'>  {% endif %}
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span><span class='line'>{% endif %}
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Xbox Live</h2>
+
+<p>The second custom aside I created follows the implementation as described on the official Xbox site, which is using an iframe to embed the card. I don&#8217;t really like the iframe to embed an external page, but this implementation was small and function, which is the essential.</p>
+
+<figure class='code'><figcaption><span> (xboxlive.html)</span> <a href='http://kagekirin.github.com/downloads/code/../../_includes/asides/xboxlive.html'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>{% if site.xboxlive_user %}
+</span><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Xbox Live<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;iframe</span> <span class="na">src=</span><span class="s">&quot;http://gamercard.xbox.com/{{site.xboxlive_user}}.card&quot;</span> <span class="na">scrolling=</span><span class="s">&quot;no&quot;</span> <span class="na">frameBorder=</span><span class="s">&quot;0&quot;</span> <span class="na">height=</span><span class="s">&quot;140&quot;</span> <span class="na">width=</span><span class="s">&quot;204&quot;</span><span class="nt">&gt;</span>{{site.xboxlive_user}}<span class="nt">&lt;/iframe&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span><span class='line'>{% endif %}
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Configuration</h2>
+
+<p>The coderwall_user and xboxlive_user need to be specified in _config.yml.</p>
+
+<h2>More gamercard services</h2>
+
+<p>Given you have a website that generates nice gamercards (there are ton of thems), you can use the above code to include your custom gamercard as an aside.</p>
+
+<p><strong> tl;dr </strong>
+Creating asides is super easy with Jekyll/Octopress. And I&#8217;ll probably create a few more for fun.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rediscovering Web Development in 2012]]></title>
+    <link href="http://kagekirin.github.com/blog/2012/02/19/rediscovering-web-development-2012/"/>
+    <updated>2012-02-19T22:49:00+09:00</updated>
+    <id>http://kagekirin.github.com/blog/2012/02/19/rediscovering-web-development-2012</id>
+    <content type="html"><![CDATA[<p>I&#8217;m not a web developer by birth.
+I&#8217;ve done some web development as cheap jobs when I was a student. As such, I knew the vital parts of PHP, some bits of Javascript and of course the HTML4 DOM and the basics of CSS. Just enough to pound out a (-cheap-looking- programmer art) webpage, with MySQL for database support.
+That was between 1999 and 2006. Then I graduated.</p>
+
+<p>Not that web development was boring, but since the web bubble just exploded when I was in my 2nd year at University, I had some prejudices to web development being a good career path. Plus, game programming was something I wanted to do since my childhood, and graphics programming was something I studied, I chose the path of a graphics programmer, and not the one of a web developper.</p>
+
+<p>Hence, I didn&#8217;t follow the evolutions that closely.
+Well, I saw XHTML coming during the XML boom &#8211; put everything into XML, and if you need the data in a different format, add some XML layer on top of it &#8211; and going, I saw HTML5 arriving to make the web better (and played Apple&#8217;s &#8220;Checkers&#8221; demo countless of times), saw the rise of CSS, to the point of CSS3 (I liked the part where it killed the old tablosaurs), and WebGL arriving (after seeing VRML and X3D dying their all-to-merited death), all that without really taking part in those changes.</p>
+
+<p>And now, in 2012, I finally decided to relaunch my blog in a different form (I had a self-hosted WordPress blog, but I let it die without updates, neither in the form of WP patches, nor in content) and found this Octopress thingy I am using, which looks to me that it&#8217;s using a great bunch of new technologies, that didn&#8217;t ring any bells until now: SASS, Liquid, Jekyll, jQuery, etc.</p>
+
+<p>So I&#8217;m entering totally new terrain, which is both terrifying (in the amount of new stuff to learn) and interesting (in the amount of new stuff to discover) at the same time, and I&#8217;ll be blogging about my discoverings here from time to time.</p>
+
+<p>Besides trying to configure this site to look a bit &#8220;different&#8221; from the vanilla Octopress theme, I have one other motivation to go all this way:
+I was asked by some very good friends if I could produce some small iOS app for their organization. Hence I&#8217;ve been spending some time to look into possible solutions to produce an app (possibly not limited to iOS) in the short amount of time I have besides work.</p>
+
+<p>I already knew PhoneGap from some earlier &#8220;research&#8221;, but haven&#8217;t come to use it yet.
+But then I found Octopress, and Jekyll as a static page generator as its base, and this idea kinda stuck with me: If I&#8217;m going to put out a little app that&#8217;s going to contain little more than text, I could use those technologies to pound out an app pretty quickly. Modifying the styles could even be done by my friends, and since I could easily host its sources on github, it would make the updates pretty easy.</p>
+
+<p>Looking closer at my requirements, I found out that there&#8217;s already been someone with a similar idea, which has resulted in a project called Mulberry.</p>
+
+<p>Mulberry is based on PhoneGap and Jekyll and allows to generate the &#8220;scaffolding&#8221; of an app for iOS and Android. I&#8217;ve been toying with for a couplke of hours today, but it looks pretty promising.</p>
+
+<p><strong>tl;dr</strong> Web development has gone a long way, and I&#8217;m looking forward to learn more about all these new technologies.
+Actually, it&#8217;s awesome to see all the new evolutions of web technologies, and even to be using them.</p>
+
+<p>On this matter of thought, if anyone knows how to put in a WebGL-powered tag cloud for the categories of my posts, I&#8217;d like to hear about it.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Opening Post]]></title>
+    <link href="http://kagekirin.github.com/blog/2012/02/15/opening-post/"/>
+    <updated>2012-02-15T23:32:00+09:00</updated>
+    <id>http://kagekirin.github.com/blog/2012/02/15/opening-post</id>
+    <content type="html"><![CDATA[<p><strong>tl;dr</strong> I hereby declare this blog opened!</p>
+
+<p>Since my old WP blog died of (wilfull) neglect at least 2 years ago, I am starting a new one, and will try to keep it updated regularly. (I don&#8217;t promise anything, though).
+My old blog was a more a mixture of political stuff, life blog, and coding, and also written in several languages, meaning that each post was a lot of extra work translating it.
+This time, I&#8217;ll keep it easy and blog only about coding stuff, and only in English.</p>
+
+<p>What coding stuff? (There&#8217;s a lot that would merit to be talked about).<br/>
+Since I&#8217;m a graphics programmer, there will be posts about graphics programming, i.e. shaders, graphics algorithms.<br/>
+But I will also cover more general programming, be it with subjects like refactoring,
+&#8220;dark magic&#8221; programming (the arcanes of mixing languages that should better not be mixed &#8211; more on that later), programming languages, etc.<br/>
+Also, I plan to write about my learning of C# with Unity3D.<br/>
+And since I&#8217;m currently rediscovering a lot of web programming that I just saw passing by in the last years, I will write about that as well.</p>
+
+<p>So far, for what I plan to blog about, but I will write a more specific post with some ideas later.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Hello World]]></title>
+    <link href="http://kagekirin.github.com/blog/2012/02/15/hello-world/"/>
+    <updated>2012-02-15T23:31:00+09:00</updated>
+    <id>http://kagekirin.github.com/blog/2012/02/15/hello-world</id>
+    <content type="html"><![CDATA[<p>Like the first words an infant says, a coder starts his &#8220;coder life&#8221; by printing those simple words.</p>
+
+<p>More in detail, the point of creating a program that prints a little message is to prove that the programming statements are understood by the parser, can be translated into an abstract syntax, and finally translated into binary instructions understandable by the machine. In short, if this simple program can be compiled and linked, any other program can be built as well.</p>
+
+<p>As such, there&#8217;s nothing more appropriate as to start this dev blog by stating &#8220;Hello World&#8221;.
+I.e. if this post can be generated, any post can be generated.</p>
+
+<p><strong>tl;dr</strong>
+This looks nicer than a generic lorem ipsum.</p>
+]]></content>
+  </entry>
   
 </feed>

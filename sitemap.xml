@@ -54,7 +54,13 @@
     </url>
     <url>
         <loc>http://kagekirin.github.com/blog/2012/12/05/not-dead-yet-dot-dot-dot/</loc>
-        <lastmod>2012-12-05T01:38:54+09:00</lastmod>
+        <lastmod>2012-12-05T02:18:14+09:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://kagekirin.github.com/blog/2012/12/05/p4sandbox-distributed-working-with-perforce/
+        </loc>
+        <lastmod>2012-12-05T02:22:09+09:00</lastmod>
     </url>
     <url>
         <loc>http://kagekirin.github.com/about/cv.html</loc>
@@ -74,7 +80,7 @@
     </url>
     <url>
         <loc>http://kagekirin.github.com/blog/archives/</loc>
-        <lastmod>2012-12-05T01:41:45+09:00</lastmod>
+        <lastmod>2012-12-05T02:22:09+09:00</lastmod>
     </url>
     <url>
         <loc>http://kagekirin.github.com/help/</loc>
@@ -90,7 +96,7 @@
     </url>
     <url>
         <loc>http://kagekirin.github.com/</loc>
-        <lastmod>2012-12-05T01:41:45+09:00</lastmod>
+        <lastmod>2012-12-05T02:22:09+09:00</lastmod>
     </url>
     <url>
         <loc>http://kagekirin.github.com/test/</loc>

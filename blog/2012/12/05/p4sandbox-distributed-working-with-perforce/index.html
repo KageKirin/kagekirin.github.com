@@ -5,11 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Test-Driven Shader Development (an idea) - Code Alchemist</title>
+  <title>P4Sandbox - Distributed working with Perforce - Code Alchemist</title>
   <meta name="author" content="Chris Helmich">
 
   
-  <meta name="description" content="This post is more about an idea I had, than about its actual implementation. Test-driven Shader Development Base idea When doing shader development, &hellip;">
+  <meta name="description" content="Working with an P4 environment has its quirks,
+such as not always being able to submit,
+hence having unrelated changes accumulating in the same file &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://kagekirin.github.com/blog/2012/04/05/test-driven-shader-development-an-idea/">
+  <link rel="canonical" href="http://kagekirin.github.com/blog/2012/12/05/p4sandbox-distributed-working-with-perforce/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -81,7 +83,7 @@
   
   <header>
     
-      <h1 class="entry-title">Test-Driven Shader Development (an Idea)</h1>
+      <h1 class="entry-title">P4Sandbox - Distributed Working With Perforce</h1>
     
     
       <p class="meta">
@@ -97,7 +99,7 @@
   
 
 
-<time datetime="2012-04-05T00:57:00+09:00" pubdate data-updated="true">Apr 5<span>th</span>, 2012</time>
+<time datetime="2012-12-05T02:17:00+09:00" pubdate data-updated="true">Dec 5<span>th</span>, 2012</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -106,112 +108,56 @@
   </header>
 
 
-<div class="entry-content"><p>This post is more about an idea I had, than about its actual implementation.</p>
+<div class="entry-content"><p>Working with an P4 environment has its quirks,
+such as not always being able to submit,
+hence having unrelated changes accumulating in the same file.<br/>
+In such cases, you can either submit the whole bunch,
+hoping you didn&#8217;t break anything on the way
+and letting any poor integrator lost in the rain,
+or spending even more time trying to untangle everything
+in order to make small submits again
+(good luck with this if you did NOT start out with making
+many shelved changes on the way).</p>
 
-<p>Test-driven Shader Development</p>
+<p>To remedy to this pain,
+Perforce created the so called P4Sandbox,
+which functions as a local
+(single workspace)
+replication server
+to which you submit your changes to,
+and later sync with the central server.
+While working,
+you can still get the latest updates from the central server
+by syncing
+(and resolving possible conflicts along the way).</p>
 
-<h2>Base idea</h2>
+<p>Setting up a P4Sandbox is pretty easy,
+since there&#8217;s an assistant.
+You will need to create a client mapping for the files you want to work on,
+and get those replicated into the local copy.<br/>
+From there,
+you create another workspace,
+this time using the P4Sandbox as server,
+and start working.</p>
 
-<p>When doing shader development,
-be it for R&amp;D purposes or in a production environment,
-you will run into a couple of possible issues:</p>
+<p>Pros:
++   Distributed: Able to work even when the central server is not available.<br/>
++   Lockless: You can still submit even if the files are locked on the central server.<br/>
++   Locality: It&#8217;s faster than using the central server.</p>
 
-<ul>
-<li>shader not compiling</li>
-<li>shader not linking (in GL)</li>
-<li>incompatible vertex and pixel shader due to interpolator differences (Cg, DX)</li>
-<li>shader not running due to wrong input</li>
-<li>shader running but not giving the expected result (algorithmic error)</li>
-<li>shader not returning the expected result due to wrong input</li>
-<li>wrong output from one shader breaking another shader (happens often when playing with lighting models)</li>
-<li>shader computationally too heavy (instruction-bound or texture-fetch-bound)</li>
-<li>a lot of other stuff that can go wrong, and by Murphy&#8217;s law, will go wrong.</li>
-</ul>
+<p>Cons:
+-   Disk space usage: 2 workspaces + the replicated data: the whole thing
+will take quite some disk space. Of course, this works great if it&#8217;s
+only source files (or small image data), but once you have a lot of game
+assets in it, be prepared to see your free disk space fade away quite
+quickly.
+-   Submit comments: comments done to changes in the P4Sandbox went lost
+while syncing them with the central P4Server.
+-   Shelves: shelving did not work when I used it. Might have been a bug,
+though.</p>
 
-
-<p>In many of these cases,
-nailing the problem down to a few causes,
-at best a single one,
-will allow for fast solutions
-and let the programmer focus on the more interesting parts.</p>
-
-<h2>Compiler/Driver issues</h2>
-
-<p>Those are mostly issues related to building and loading the shader.</p>
-
-<p>The straightforward solution is to implement hot reload,
-i.e. reloading while the engine or test environment is running,
-and this everytime the shader file is saved.</p>
-
-<p>The apported benefit is that this will allow for shader cooking,
-i.e. editing and tweaking of the shader depending on its &#8220;visual&#8221; result.<br/>
-(One of the features I loved on CryENGINE3, and that I&#8217;m totally missing on the current engine at work).</p>
-
-<p>An optimization to this:<br/>
-reload everytime a hash value depending on the full shader source,
-i.e. the <code>main</code> function file and all of its includes, changes.</p>
-
-<h2>Input issues</h2>
-
-<p>The straightforward solution is to have &#8220;static&#8221; inputs.
-Those can be:</p>
-
-<ul>
-<li>static textures to simulate a GBuffer</li>
-<li>static camera values</li>
-<li>static uniform settings</li>
-<li>static vertex settings</li>
-</ul>
-
-
-<p>In the same idea, being able to tweak parameters and see its outcome is likely to help finding input values that lead to computational errors. (Div-by-zero anyone?).</p>
-
-<h2>Output issues</h2>
-
-<p>This kind of issues can be caught by creating a difference image to either</p>
-
-<ul>
-<li>a &#8220;reference&#8221; image (e.g. created through raytracing instead of rendering)</li>
-<li>the last &#8220;good&#8221; result image</li>
-</ul>
-
-
-<p>The frame &#8220;correctness&#8221; is the amount of errors/differences in relation to the reference image.</p>
-
-<h2>Algorithmic issues</h2>
-
-<ul>
-<li>using &#8220;random&#8221; inputs
-
-<ul>
-<li>shuffle inputs several times, test if output is correct</li>
-</ul>
-</li>
-</ul>
-
-
-<h2>Saving the tests</h2>
-
-<p>A great addition for this kind of framework is to save the test &#8220;artifacts&#8221; (in Jenkins&#8217; terms) along with its inputs to allow for later reproducibility.</p>
-
-<ul>
-<li>inputs: the shader files, static input values, user input values</li>
-<li>artifacts as such would be: random input values, output frames</li>
-</ul>
-
-
-<h2>Generalization</h2>
-
-<p>Such a framework would be great to be generalized to work with both Direct3D (several versions, but at least DX9.5 for Xenon and DX11.1) and OpenGL (several versions as well, but ES2 would make my day).
-And support for the exots like GX2 (&#8220;Café&#8221;) and GCM (PS3, Vita). (The shader in latter systems are based on GLSL and Cg, respectively, making the porting easier).</p>
-
-<p>Furthermore, OpenCL and ComputeShaders would equally profit fropm such a system.
-(As would SPU jobs do, but that&#8217;s limited to a certain type of hardware).</p>
-
-<p>A general solution would allow to have &#8220;any&#8221; kind of data
-processed by &#8220;any&#8221; kind of &#8220;processor&#8221;, be it DX, GL, CL, CUDA or C++AMP.</p>
-
-<p><strong> tl;dr</strong> Is there some student/grad student that would feel like implementing such a system as a master/diploma/doctorate thesis?</p>
+<p>If you&#8217;re like me and annoyed by the limits imposed on you by a central
+P4 server, I can only urge to try it out for yourself.</p>
 
 <p>/C</p>
 </div>
@@ -236,21 +182,15 @@ processed by &#8220;any&#8221; kind of &#8220;processor&#8221;, be it DX, GL, CL
   
 
 
-<time datetime="2012-04-05T00:57:00+09:00" pubdate data-updated="true">Apr 5<span>th</span>, 2012</time>
+<time datetime="2012-12-05T02:17:00+09:00" pubdate data-updated="true">Dec 5<span>th</span>, 2012</time>
       
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/tdd/'>TDD</a>, <a class='category' href='/blog/categories/shader/'>shader</a>
-  
-</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://kagekirin.github.com/blog/2012/04/05/test-driven-shader-development-an-idea/" data-via="KageKirin" data-counturl="http://kagekirin.github.com/blog/2012/04/05/test-driven-shader-development-an-idea/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://kagekirin.github.com/blog/2012/12/05/p4sandbox-distributed-working-with-perforce/" data-via="KageKirin" data-counturl="http://kagekirin.github.com/blog/2012/12/05/p4sandbox-distributed-working-with-perforce/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -263,10 +203,8 @@ processed by &#8220;any&#8221; kind of &#8220;processor&#8221;, be it DX, GL, CL
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/04/04/jekyll-plugin-for-graphviz/" title="Previous Post: Jekyll plugin for Graphviz">&laquo; Jekyll plugin for Graphviz</a>
+        <a class="basic-alignment left" href="/blog/2012/12/05/not-dead-yet-dot-dot-dot/" title="Previous Post: Not dead yet...">&laquo; Not dead yet...</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2012/05/26/generalized-motion-blur-idea/" title="Next Post: Generalized Motion Blur (idea)">Generalized Motion Blur (idea) &raquo;</a>
       
     </p>
   </footer>
@@ -435,8 +373,8 @@ processed by &#8220;any&#8221; kind of &#8220;processor&#8221;, be it DX, GL, CL
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://kagekirin.github.com/blog/2012/04/05/test-driven-shader-development-an-idea/';
-        var disqus_url = 'http://kagekirin.github.com/blog/2012/04/05/test-driven-shader-development-an-idea/';
+        var disqus_identifier = 'http://kagekirin.github.com/blog/2012/12/05/p4sandbox-distributed-working-with-perforce/';
+        var disqus_url = 'http://kagekirin.github.com/blog/2012/12/05/p4sandbox-distributed-working-with-perforce/';
         var disqus_script = 'embed.js';
       
     (function () {

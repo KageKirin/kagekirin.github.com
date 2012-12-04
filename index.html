@@ -9,9 +9,9 @@
   <meta name="author" content="Chris Helmich">
 
   
-  <meta name="description" content="Working with an P4 environment has its quirks,
-such as not always being able to submit,
-hence having unrelated changes accumulating in the same file &hellip;">
+  <meta name="description" content="This one is even better than the P4Sandbox I previously wrote about:
+Git-Fusion is a server bridge that interfaces Perforce to Git and allows
+you to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,85 @@ hence having unrelated changes accumulating in the same file &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/12/05/perforce-git-fusion-distributed-working-with-perforce/">Perforce Git-Fusion - Distributed Working With Perforce, the More Awesome Way</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-05T02:24:00+09:00" pubdate data-updated="true">Dec 5<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/12/05/perforce-git-fusion-distributed-working-with-perforce/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This one is even better than the P4Sandbox I previously wrote about:<br/>
+Git-Fusion is a server bridge that interfaces Perforce to Git and allows
+you to use the DVCS freely,
+while still being able to work with a central server on enterprise level.</p>
+
+<p>Git-Fusion is collection of Python scripts
+that use P4Python
+to interface with Perforce and Git on the server,
+and take care of the <em>both-way</em> syncing
+of the changes between P4 and Git.</p>
+
+<p>It comes in 2 versions:
+a &#8220;virtual&#8221; appliance that can be run anywhere as a VM,
+and a &#8220;native&#8221; version that needs to be installed on a Linux machine.</p>
+
+<p>Currently,
+I&#8217;m still stuck on the installation of the &#8220;native&#8221; version,
+but I will post a tutorial once I&#8217;m done with it.</p>
+
+<p>Pros:
++   Git!
++   All the freedom that Git offers (syncing to multiple servers,
+&#8220;guerilla-style&#8221; coding without central repo) while still be able to
+submit to a central server for storage.
++   Other people that prefer Perforce (yes, they do exist) can still
+continue to work
++   the &#8220;virtual&#8221; version is super easy to get to install: 1 virtual
+appliance disk image to run on a VM, access over HTTP, done.</p>
+
+<p>Cons:
+-    The &#8220;native&#8221; version is pretty hard to install (unless you&#8217;re a
+hardcore linux guy that knows how to administrate a system,
+in which case you deserve all my respect for being able to cope
+with the Perforce documentation)
+-    Obviously, the limits of Git still apply. Using Git for large amounts
+of large binaries is still a very bad idea. (But git was never intended
+to be used this way)</p>
+
+<p><em>tl;dr</em> Git-Fusion is pretty promising.
+Check out the installation tutorial in near future.</p>
+
+<p>/C</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1243,7 +1322,7 @@ which allows to use <a href="http://www.graphviz.org/">graphviz</a> notation ins
 
 <p>should give the diagram below:</p>
 
-<p>Liquid error: undefined method `join&#8217; for #&lt;String:0x007f9e34293518></p>
+<p>Liquid error: undefined method `join&#8217; for #&lt;String:0x007f9551aac1a0></p>
 
 <p>Now, where I see great use for this plugin (and probably gonna use it in the future), is to generate UML diagrams to describe a given architecture, flow charts to describe data or work flows, or schemata describing some algorithm.</p>
 
@@ -1485,128 +1564,6 @@ I&#8217;ve created a <a href="/help/mulberry-cheat-sheet.html">help page</a> and
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/03/01/an-outlook-and-some-orientation/">An Outlook and Some Orientation</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-01T00:17:00+09:00" pubdate data-updated="true">Mar 1<span>st</span>, 2012</time>
-        
-         | <a href="/blog/2012/03/01/an-outlook-and-some-orientation/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>What will this blog be about?</p>
-
-<p>I stated in my opening post that I will blog about graphics programming, programming on a general level, and add some tadbits about web programming. To concretize this plan, or rather as a TODO list, I wrote this post.</p>
-
-<h2>Web programming</h2>
-
-<ul>
-<li>mostly about Octopress, how to, or better, how I customize parts of it.</li>
-<li>some HTML5 and WebGL things I try out.</li>
-<li>things that go hand in hand with the next topic</li>
-</ul>
-
-
-<h2>App programming</h2>
-
-<ul>
-<li>Using PhoneGap to create web technology-based iOS apps
-&#8211;  automating parts of the build process</li>
-<li>Using Mulberry to create web technology-based iOS apps</li>
-<li>Other tools to create iOS apps</li>
-</ul>
-
-
-<h2>Graphics programming</h2>
-
-<ul>
-<li>Algorithms I implement either at work or at home</li>
-<li>Explanations about graphics algorithms</li>
-<li>Personal research</li>
-</ul>
-
-
-<h2>General programming</h2>
-
-<ul>
-<li>Refactoring</li>
-<li>Optimization</li>
-<li>Things I run into at work</li>
-<li>The &#8220;dark magic&#8221; of language mixing
-&#8211;  Preprocessor and templates
-&#8211;  Obj-C and C++ templates (I see you gasping in horror at the sheer idea of this).
-&#8211;  Preprocessor code generation</li>
-</ul>
-
-
-<h2>Game programming</h2>
-
-<ul>
-<li>Algorithms for game logic</li>
-<li>Framework architecture</li>
-<li>Other findings</li>
-</ul>
-
-
-<h2>Unity3D programming</h2>
-
-<ul>
-<li>C# in Unity</li>
-<li>Learning progress</li>
-<li>Shaders in Unity</li>
-</ul>
-
-
-<h2>Development tools</h2>
-
-<ul>
-<li>VisualStudio</li>
-<li>Xcode</li>
-<li>Perforce (mostly how much I despise this system)</li>
-<li>Git</li>
-<li>Mercurial</li>
-<li>Diffing</li>
-</ul>
-
-
-<h2>Papers</h2>
-
-<p>I might want to write (more or less academic) papers and submit them for review. You will find them here as well.</p>
-
-<p>I will probably edit this list over time&#8230;</p>
-
-<p><strong> tl;dr </strong><br/>
-I have no clue what I will write about on this blog. But be sure that it&#8217;ll be code-related.</p>
-
-<p>/C</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1627,6 +1584,10 @@ I have no clue what I will write about on this blog. But be sure that it&#8217;l
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/12/05/perforce-git-fusion-distributed-working-with-perforce/">Perforce Git-Fusion - Distributed working with Perforce, the more awesome way</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/12/05/p4sandbox-distributed-working-with-perforce/">P4Sandbox - Distributed working with Perforce</a>
       </li>
     
@@ -1640,10 +1601,6 @@ I have no clue what I will write about on this blog. But be sure that it&#8217;l
     
       <li class="post">
         <a href="/blog/2012/05/31/generalized-motion-blur-contd/">Generalized Motion Blur (cont&#8217;d)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/05/26/generalized-motion-blur-idea/">Generalized Motion Blur (idea)</a>
       </li>
     
   </ul>

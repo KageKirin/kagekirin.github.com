@@ -5,11 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>what is a graphics programmer? - Code Alchemist</title>
+  <title>Perforce Git-Fusion - Distributed working with Perforce, the more awesome way - Code Alchemist</title>
   <meta name="author" content="Chris Helmich">
 
   
-  <meta name="description" content="What Is a Graphics Programmer? Mar 22nd, 2012 I am a graphics programmer.This job, as I see it, is the chimera of programming jobs:The graphics part &hellip;">
+  <meta name="description" content="This one is even better than the P4Sandbox I previously wrote about:
+Git-Fusion is a server bridge that interfaces Perforce to Git and allows
+you to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://kagekirin.github.com/about/graphics-programmer.html">
+  <link rel="canonical" href="http://kagekirin.github.com/blog/2012/12/05/perforce-git-fusion-distributed-working-with-perforce/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -77,32 +79,15 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">What Is a Graphics Programmer?</h1>
-    <p class="meta">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-22T00:18:00+09:00" pubdate data-updated="true">Mar 22<span>nd</span>, 2012</time></p>
-  </header>
-  
-  <p>I am a graphics programmer.This job, as I see it, is the chimera of programming jobs:The <em>graphics</em> part makes me the &#8220;human interface&#8221; to artists and game designers alike, to support and enable them to realize their vision of the game (also to push them to try new approaches to graphics or to give their wishes a more tangible form). As such, creating the rendering pipeline and the material shaders for the artists is part of my daily work. And to support the game designers, my job is to create post-processing effects that would express a part of the gameplay (e.g. blood screen effect).The <em>programmer</em> part is the technical area, which not only involves, writing code, but also writing clean code, or to clean up (refactor) existing code, adding new features by the way.I see myself first and foremost as a <em>clean</em> coder (term borrowed from &#8216;Uncle Bob&#8217; Martin) having his specialization in rendering technology.As such, I&#8217;m on the never ending &#8220;way of the coder&#8221;, with learning as a lifelong task.And it&#8217;s learning new things, be it from books, co-workers or the great knowledge of the universe (aka Internet), which makes my job fascinating.</p>
-
-  
-    <footer>
+    
+      <h1 class="entry-title">Perforce Git-Fusion - Distributed Working With Perforce, the More Awesome Way</h1>
+    
+    
       <p class="meta">
         
-        
 
 
 
@@ -114,13 +99,88 @@
   
 
 
-<time datetime="2012-03-22T00:18:00+09:00" pubdate data-updated="true">Mar 22<span>nd</span>, 2012</time>
+<time datetime="2012-12-05T02:24:00+09:00" pubdate data-updated="true">Dec 5<span>th</span>, 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a>
         
       </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>This one is even better than the P4Sandbox I previously wrote about:<br/>
+Git-Fusion is a server bridge that interfaces Perforce to Git and allows
+you to use the DVCS freely,
+while still being able to work with a central server on enterprise level.</p>
+
+<p>Git-Fusion is collection of Python scripts
+that use P4Python
+to interface with Perforce and Git on the server,
+and take care of the <em>both-way</em> syncing
+of the changes between P4 and Git.</p>
+
+<p>It comes in 2 versions:
+a &#8220;virtual&#8221; appliance that can be run anywhere as a VM,
+and a &#8220;native&#8221; version that needs to be installed on a Linux machine.</p>
+
+<p>Currently,
+I&#8217;m still stuck on the installation of the &#8220;native&#8221; version,
+but I will post a tutorial once I&#8217;m done with it.</p>
+
+<p>Pros:
++   Git!
++   All the freedom that Git offers (syncing to multiple servers,
+&#8220;guerilla-style&#8221; coding without central repo) while still be able to
+submit to a central server for storage.
++   Other people that prefer Perforce (yes, they do exist) can still
+continue to work
++   the &#8220;virtual&#8221; version is super easy to get to install: 1 virtual
+appliance disk image to run on a VM, access over HTTP, done.</p>
+
+<p>Cons:
+-    The &#8220;native&#8221; version is pretty hard to install (unless you&#8217;re a
+hardcore linux guy that knows how to administrate a system,
+in which case you deserve all my respect for being able to cope
+with the Perforce documentation)
+-    Obviously, the limits of Git still apply. Using Git for large amounts
+of large binaries is still a very bad idea. (But git was never intended
+to be used this way)</p>
+
+<p><em>tl;dr</em> Git-Fusion is pretty promising.
+Check out the installation tutorial in near future.</p>
+
+<p>/C</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
       
-        <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://kagekirin.github.com/about/graphics-programmer.html" data-via="KageKirin" data-counturl="http://kagekirin.github.com/about/graphics-programmer.html" >Tweet</a>
+
+<span class="byline author vcard">Posted by <span class="fn">Chris Helmich</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-05T02:24:00+09:00" pubdate data-updated="true">Dec 5<span>th</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://kagekirin.github.com/blog/2012/12/05/perforce-git-fusion-distributed-working-with-perforce/" data-via="KageKirin" data-counturl="http://kagekirin.github.com/blog/2012/12/05/perforce-git-fusion-distributed-working-with-perforce/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -130,9 +190,14 @@
   
 </div>
 
+    
+    <p class="meta">
       
-    </footer>
-  
+        <a class="basic-alignment left" href="/blog/2012/12/05/p4sandbox-distributed-working-with-perforce/" title="Previous Post: P4Sandbox - Distributed working with Perforce">&laquo; P4Sandbox - Distributed working with Perforce</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
   <section>
@@ -298,8 +363,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://kagekirin.github.com/about/graphics-programmer.html';
-        var disqus_url = 'http://kagekirin.github.com/about/graphics-programmer.html';
+        var disqus_identifier = 'http://kagekirin.github.com/blog/2012/12/05/perforce-git-fusion-distributed-working-with-perforce/';
+        var disqus_url = 'http://kagekirin.github.com/blog/2012/12/05/perforce-git-fusion-distributed-working-with-perforce/';
         var disqus_script = 'embed.js';
       
     (function () {

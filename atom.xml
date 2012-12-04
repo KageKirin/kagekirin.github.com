@@ -4,7 +4,7 @@
   <title><![CDATA[Code Alchemist]]></title>
   <link href="http://kagekirin.github.com/atom.xml" rel="self"/>
   <link href="http://kagekirin.github.com/"/>
-  <updated>2012-12-05T02:24:12+09:00</updated>
+  <updated>2012-12-05T02:30:42+09:00</updated>
   <id>http://kagekirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
@@ -12,6 +12,56 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Perforce Git-Fusion - Distributed working with Perforce, the more awesome way]]></title>
+    <link href="http://kagekirin.github.com/blog/2012/12/05/perforce-git-fusion-distributed-working-with-perforce/"/>
+    <updated>2012-12-05T02:24:00+09:00</updated>
+    <id>http://kagekirin.github.com/blog/2012/12/05/perforce-git-fusion-distributed-working-with-perforce</id>
+    <content type="html"><![CDATA[<p>This one is even better than the P4Sandbox I previously wrote about:<br/>
+Git-Fusion is a server bridge that interfaces Perforce to Git and allows
+you to use the DVCS freely,
+while still being able to work with a central server on enterprise level.</p>
+
+<p>Git-Fusion is collection of Python scripts
+that use P4Python
+to interface with Perforce and Git on the server,
+and take care of the <em>both-way</em> syncing
+of the changes between P4 and Git.</p>
+
+<p>It comes in 2 versions:
+a &#8220;virtual&#8221; appliance that can be run anywhere as a VM,
+and a &#8220;native&#8221; version that needs to be installed on a Linux machine.</p>
+
+<p>Currently,
+I&#8217;m still stuck on the installation of the &#8220;native&#8221; version,
+but I will post a tutorial once I&#8217;m done with it.</p>
+
+<p>Pros:
++   Git!
++   All the freedom that Git offers (syncing to multiple servers,
+&#8220;guerilla-style&#8221; coding without central repo) while still be able to
+submit to a central server for storage.
++   Other people that prefer Perforce (yes, they do exist) can still
+continue to work
++   the &#8220;virtual&#8221; version is super easy to get to install: 1 virtual
+appliance disk image to run on a VM, access over HTTP, done.</p>
+
+<p>Cons:
+-    The &#8220;native&#8221; version is pretty hard to install (unless you&#8217;re a
+hardcore linux guy that knows how to administrate a system,
+in which case you deserve all my respect for being able to cope
+with the Perforce documentation)
+-    Obviously, the limits of Git still apply. Using Git for large amounts
+of large binaries is still a very bad idea. (But git was never intended
+to be used this way)</p>
+
+<p><em>tl;dr</em> Git-Fusion is pretty promising.
+Check out the installation tutorial in near future.</p>
+
+<p>/C</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[P4Sandbox - Distributed working with Perforce]]></title>
@@ -976,7 +1026,7 @@ which allows to use <a href="http://www.graphviz.org/">graphviz</a> notation ins
 
 <p>should give the diagram below:</p>
 
-<p>Liquid error: undefined method `join&#8217; for #&lt;String:0x007f9e34293518></p>
+<p>Liquid error: undefined method `join&#8217; for #&lt;String:0x007f9551aac1a0></p>
 
 <p>Now, where I see great use for this plugin (and probably gonna use it in the future), is to generate UML diagrams to describe a given architecture, flow charts to describe data or work flows, or schemata describing some algorithm.</p>
 

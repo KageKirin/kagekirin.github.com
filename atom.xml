@@ -4,7 +4,7 @@
   <title><![CDATA[Code Alchemist]]></title>
   <link href="http://kagekirin.github.com/atom.xml" rel="self"/>
   <link href="http://kagekirin.github.com/"/>
-  <updated>2012-12-04T02:26:08+09:00</updated>
+  <updated>2012-12-05T02:15:44+09:00</updated>
   <id>http://kagekirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
@@ -12,6 +12,30 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Not dead yet...]]></title>
+    <link href="http://kagekirin.github.com/blog/2012/12/05/not-dead-yet-dot-dot-dot/"/>
+    <updated>2012-12-05T01:32:00+09:00</updated>
+    <id>http://kagekirin.github.com/blog/2012/12/05/not-dead-yet-dot-dot-dot</id>
+    <content type="html"><![CDATA[<p>This has been one crazy year.
+Just a moment ago,
+we were still in may,
+then it was summer,
+and now we&#8217;re less than 3 weeks to Christmas.</p>
+
+<p>I just wanted to affirm that neither me, nor my blog are dead yet.
+I&#8217;ve just been super busy IRL
+and lacked the time
+to write anything new.</p>
+
+<p>I&#8217;ll try to update more often, with smaller, but more concise posts.</p>
+
+<p>/C</p>
+
+<p>PS: Same for my other blog as well, btw.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[My Work Environment (at work, 2012)]]></title>
@@ -91,6 +115,8 @@ but should not be reproducible on the VM.<br/>
 <p>And that&#8217;s pretty much it.<br/>
 I&#8217;m using some batch files to simplify a couple of workflows,
 but nothing really extraordinary.</p>
+
+<p>/C</p>
 ]]></content>
   </entry>
   
@@ -306,6 +332,8 @@ that can be batched into it.</p>
 Bad idea: Drawing thousands of particles twice to generate motion blur on them.<br/>
 Good idea: Drawing special particles with motion vectors is more efficient.<br/>
 Super idea: Batch screen-space warping particles into the motion particles.</p>
+
+<p>/C</p>
 ]]></content>
   </entry>
   
@@ -729,6 +757,8 @@ but I will post more on it a later post.</p>
 There are several types of Motion blur passes,
 and they can be batched for a more optimal render process.
 More on blurring later.</p>
+
+<p>/C</p>
 ]]></content>
   </entry>
   
@@ -843,6 +873,8 @@ And support for the exots like GX2 (&#8220;Café&#8221;) and GCM (PS3, Vita). (T
 processed by &#8220;any&#8221; kind of &#8220;processor&#8221;, be it DX, GL, CL, CUDA or C++AMP.</p>
 
 <p><strong> tl;dr</strong> Is there some student/grad student that would feel like implementing such a system as a master/diploma/doctorate thesis?</p>
+
+<p>/C</p>
 ]]></content>
   </entry>
   
@@ -884,7 +916,7 @@ which allows to use <a href="http://www.graphviz.org/">graphviz</a> notation ins
 
 <p>should give the diagram below:</p>
 
-<p>Liquid error: undefined method `join&#8217; for #&lt;String:0x007fac5cc6a768></p>
+<p>Liquid error: undefined method `join&#8217; for #&lt;String:0x007f9fb9578ae0></p>
 
 <p>Now, where I see great use for this plugin (and probably gonna use it in the future), is to generate UML diagrams to describe a given architecture, flow charts to describe data or work flows, or schemata describing some algorithm.</p>
 
@@ -896,6 +928,8 @@ or wait until it has been integrated into the mainline Octopress branch.</p>
 (Although I see hardly any need to generate diagrams for an app. Then again, there might be a need for it).</p>
 
 <p>EDIT: I just saw a perfect application for graphs in an app that I&#8217;m working on, namely, a diagram for tournaments or championships, to show how the candidates (fighters in this case) advance from round to round.</p>
+
+<p>/C</p>
 ]]></content>
   </entry>
   
@@ -918,6 +952,8 @@ It explains the core functionality of Mulberry.</p>
 <p><em>Page definitions</em> are reusable groupings of components and capabilities.</p>
 
 <p><em>Stores</em> persist data on the device, make that data query-able, and return model instances.</p>
+
+<p>/C</p>
 ]]></content>
   </entry>
   
@@ -1055,6 +1091,8 @@ But I guess, having a third <code>Toura-universal.xcodeproj</code> for universal
 I&#8217;ve created a <a href="http://kagekirin.github.com/help/mulberry-cheat-sheet.html">help page</a> and although it&#8217;s more a reminder for myself, you can use it as an easy overview.</p>
 
 <p>Next up: Further Mulberry app customization &#8211; adapting style and layout.</p>
+
+<p>/C</p>
 ]]></content>
   </entry>
   
@@ -1146,6 +1184,8 @@ I&#8217;ve created a <a href="http://kagekirin.github.com/help/mulberry-cheat-sh
 
 <p><strong> tl;dr </strong><br/>
 I have no clue what I will write about on this blog. But be sure that it&#8217;ll be code-related.</p>
+
+<p>/C</p>
 ]]></content>
   </entry>
   
@@ -1251,6 +1291,8 @@ In fact, I&#8217;ve been playing around with customizing Octopress and added a c
 
 <p><strong> tl;dr </strong>
 Creating asides is super easy with Jekyll/Octopress. And I&#8217;ll probably create a few more for fun.</p>
+
+<p>/C</p>
 ]]></content>
   </entry>
   
@@ -1286,6 +1328,8 @@ But then I found Octopress, and Jekyll as a static page generator as its base, a
 Actually, it&#8217;s awesome to see all the new evolutions of web technologies, and even to be using them.</p>
 
 <p>On this matter of thought, if anyone knows how to put in a WebGL-powered tag cloud for the categories of my posts, I&#8217;d like to hear about it.</p>
+
+<p>/C</p>
 ]]></content>
   </entry>
   
@@ -1308,6 +1352,8 @@ Also, I plan to write about my learning of C# with Unity3D.<br/>
 And since I&#8217;m currently rediscovering a lot of web programming that I just saw passing by in the last years, I will write about that as well.</p>
 
 <p>So far, for what I plan to blog about, but I will write a more specific post with some ideas later.</p>
+
+<p>/C</p>
 ]]></content>
   </entry>
   
@@ -1325,6 +1371,8 @@ I.e. if this post can be generated, any post can be generated.</p>
 
 <p><strong>tl;dr</strong>
 This looks nicer than a generic lorem ipsum.</p>
+
+<p>/C</p>
 ]]></content>
   </entry>
   

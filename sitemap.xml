@@ -2,55 +2,59 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://kagekirin.github.com/blog/2012/02/15/hello-world/</loc>
-        <lastmod>2012-12-04T00:17:17+09:00</lastmod>
+        <lastmod>2012-12-05T01:39:32+09:00</lastmod>
     </url>
     <url>
         <loc>http://kagekirin.github.com/blog/2012/02/15/opening-post/</loc>
-        <lastmod>2012-12-04T00:17:17+09:00</lastmod>
+        <lastmod>2012-12-05T01:39:37+09:00</lastmod>
     </url>
     <url>
         <loc>http://kagekirin.github.com/blog/2012/02/19/rediscovering-web-development-2012/</loc>
-        <lastmod>2012-12-04T00:17:17+09:00</lastmod>
+        <lastmod>2012-12-05T01:39:47+09:00</lastmod>
     </url>
     <url>
         <loc>
             http://kagekirin.github.com/blog/2012/02/22/playing-with-octopress-custom-asides/
         </loc>
-        <lastmod>2012-12-04T00:17:17+09:00</lastmod>
+        <lastmod>2012-12-05T01:39:54+09:00</lastmod>
     </url>
     <url>
         <loc>http://kagekirin.github.com/blog/2012/03/01/an-outlook-and-some-orientation/</loc>
-        <lastmod>2012-12-04T00:17:17+09:00</lastmod>
+        <lastmod>2012-12-05T01:40:05+09:00</lastmod>
     </url>
     <url>
         <loc>http://kagekirin.github.com/blog/2012/03/14/mulberry-jam-contd/</loc>
-        <lastmod>2012-12-04T00:17:17+09:00</lastmod>
+        <lastmod>2012-12-05T01:40:15+09:00</lastmod>
     </url>
     <url>
         <loc>http://kagekirin.github.com/blog/2012/03/22/more-mulberry/</loc>
-        <lastmod>2012-12-04T00:17:17+09:00</lastmod>
+        <lastmod>2012-12-05T01:40:25+09:00</lastmod>
     </url>
     <url>
         <loc>http://kagekirin.github.com/blog/2012/04/04/jekyll-plugin-for-graphviz/</loc>
-        <lastmod>2012-12-04T00:17:17+09:00</lastmod>
+        <lastmod>2012-12-05T01:40:34+09:00</lastmod>
     </url>
     <url>
         <loc>
             http://kagekirin.github.com/blog/2012/04/05/test-driven-shader-development-an-idea/
         </loc>
-        <lastmod>2012-12-04T00:17:17+09:00</lastmod>
+        <lastmod>2012-12-05T01:40:53+09:00</lastmod>
     </url>
     <url>
         <loc>http://kagekirin.github.com/blog/2012/05/26/generalized-motion-blur-idea/</loc>
-        <lastmod>2012-12-04T00:17:17+09:00</lastmod>
+        <lastmod>2012-12-05T01:41:13+09:00</lastmod>
     </url>
     <url>
         <loc>http://kagekirin.github.com/blog/2012/05/31/generalized-motion-blur-contd/</loc>
-        <lastmod>2012-12-04T00:17:17+09:00</lastmod>
+        <lastmod>2012-12-05T01:41:29+09:00</lastmod>
     </url>
     <url>
         <loc>http://kagekirin.github.com/blog/2012/06/02/my-work-environment/</loc>
-        <lastmod>2012-12-04T00:17:17+09:00</lastmod>
+        <lastmod>2012-12-05T01:41:45+09:00</lastmod>
+    </url>
+    <url>
+        <loc>http://kagekirin.github.com/blog/2012/12/05/not-dead-yet-dot-dot-dot/</loc>
+        <lastmod>2012-12-05T01:38:54+09:00</lastmod>
     </url>
     <url>
         <loc>http://kagekirin.github.com/about/cv.html</loc>
@@ -70,7 +74,7 @@
     </url>
     <url>
         <loc>http://kagekirin.github.com/blog/archives/</loc>
-        <lastmod>2012-12-04T00:17:18+09:00</lastmod>
+        <lastmod>2012-12-05T01:41:45+09:00</lastmod>
     </url>
     <url>
         <loc>http://kagekirin.github.com/help/</loc>
@@ -86,7 +90,7 @@
     </url>
     <url>
         <loc>http://kagekirin.github.com/</loc>
-        <lastmod>2012-12-04T00:17:18+09:00</lastmod>
+        <lastmod>2012-12-05T01:41:45+09:00</lastmod>
     </url>
     <url>
         <loc>http://kagekirin.github.com/test/</loc>

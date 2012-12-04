@@ -4,7 +4,7 @@
   <title><![CDATA[Category: post-processing effects | Code Alchemist]]></title>
   <link href="http://kagekirin.github.com/blog/categories/post-processing-effects/atom.xml" rel="self"/>
   <link href="http://kagekirin.github.com/"/>
-  <updated>2012-12-04T02:26:08+09:00</updated>
+  <updated>2012-12-05T02:15:44+09:00</updated>
   <id>http://kagekirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
@@ -223,6 +223,8 @@ that can be batched into it.</p>
 Bad idea: Drawing thousands of particles twice to generate motion blur on them.<br/>
 Good idea: Drawing special particles with motion vectors is more efficient.<br/>
 Super idea: Batch screen-space warping particles into the motion particles.</p>
+
+<p>/C</p>
 ]]></content>
   </entry>
   
@@ -580,6 +582,8 @@ but I will post more on it a later post.</p>
 There are several types of Motion blur passes,
 and they can be batched for a more optimal render process.
 More on blurring later.</p>
+
+<p>/C</p>
 ]]></content>
   </entry>
   

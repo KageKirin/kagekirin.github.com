@@ -9,7 +9,7 @@
   <meta name="author" content="Chris Helmich">
 
   
-  <meta name="description" content="Follow up on last week&#8217;s post about Mulberry. There have been a couple of changes with Xcode 4.3, iOS 5.1 and some updates in Mulberry that &hellip;">
+  <meta name="description" content="Follow up on last week&rsquo;s post about Mulberry. There have been a couple of changes with Xcode 4.3, iOS 5.1 and some updates in Mulberry that &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -114,14 +114,14 @@
   </header>
 
 
-<div class="entry-content"><p>Follow up on last week&#8217;s post about Mulberry.</p>
+<div class="entry-content"><p>Follow up on last week&rsquo;s post about Mulberry.</p>
 
-<p>There have been a couple of changes with Xcode 4.3, iOS 5.1 and some updates in Mulberry that gave me a hard time&#8230;
+<p>There have been a couple of changes with Xcode 4.3, iOS 5.1 and some updates in Mulberry that gave me a hard time&hellip;
 In the end, I had to re-scaffold my test-apps from scratch and move my content over because of a few noteworthy changes.<br/>
 Incidentally, those changes concern the parts I did not treat in detail in my last post (or just brushed over without investigating it into depth),
 thus this follow-up makes a lot of sense.</p>
 
-<p>Giving the demo-app &#8220;kitchensink&#8221; (located in <code>demos</code>) a closer look cleared a couple of questions I still had, so here I go:</p>
+<p>Giving the demo-app &ldquo;kitchensink&rdquo; (located in <code>demos</code>) a closer look cleared a couple of questions I still had, so here I go:</p>
 
 <h2>Customization</h2>
 
@@ -137,7 +137,7 @@ Custom page-defs can be generated with the command below:</p>
 More info <a href="https://github.com/Toura/mulberry/wiki/Page-Definitions">here</a></p>
 
 <p>All pre-existing page-defs lie in <code>&lt;mulberry-root&gt;/base_apps/toura/page_defs</code> and have their purpose written in their name, making it easy to guess what they may be intended for.<br/>
-Here&#8217;s a list of them, subject to changes as new versions arise:</p>
+Here&rsquo;s a list of them, subject to changes as new versions arise:</p>
 
 <pre><code>audio-with-images-phone.yml
 audio-with-images-tablet.yml
@@ -211,7 +211,7 @@ See <a href="https://github.com/Toura/mulberry/wiki/Creating-Custom-Components">
 <pre><code>mulberry create datasource &lt;name&gt;
 </code></pre>
 
-<p>which will create a JSON file at <code>&lt;app-root&gt;/assets/data/&lt;name&gt;.json</code>. It can hold any data (as long as it&#8217;s valid JSON) and it&#8217;s up to the app to implement the functionality to read and use it.</p>
+<p>which will create a JSON file at <code>&lt;app-root&gt;/assets/data/&lt;name&gt;.json</code>. It can hold any data (as long as it&rsquo;s valid JSON) and it&rsquo;s up to the app to implement the functionality to read and use it.</p>
 
 <h3>Feature flags</h3>
 
@@ -221,8 +221,8 @@ See <a href="https://github.com/Toura/mulberry/wiki/Creating-Custom-Components">
 
 <h3>App Icon, Splash Screen, and Project file</h3>
 
-<p>When generating the app, the default PhoneGap app icon and splash screen, as well as the default Toura (xcodeproj) projects are copied into the app&#8217;s <code>&lt;app-root&gt;/build</code> folder,
-where they can be further customized. (Although I&#8217;m not sure if re-generating the app overwrites the customized versions).</p>
+<p>When generating the app, the default PhoneGap app icon and splash screen, as well as the default Toura (xcodeproj) projects are copied into the app&rsquo;s <code>&lt;app-root&gt;/build</code> folder,
+where they can be further customized. (Although I&rsquo;m not sure if re-generating the app overwrites the customized versions).</p>
 
 <p>The source files are located at <code>&lt;mulberry-root&gt;/builder/project_templates/iOS/Toura</code> for the projects and further below in <code>&lt;mulberry-root&gt;/builder/project_templates/iOS/Toura/Resources/icons</code>
 and <code>&lt;mulberry-root&gt;/builder/project_templates/iOS/Toura/Resources/splash</code> respectively for icons and splash screens.</p>
@@ -240,9 +240,9 @@ But I guess, having a third <code>Toura-universal.xcodeproj</code> for universal
 <a href="http://nachbaur.com/blog/building-ios-apps-for-over-the-air-adhoc-distribution">This link</a> looks helpful.</p>
 
 <p><strong>tl;dr</strong> I hope this short guide was useful to you.<br/>
-I&#8217;ve created a <a href="/help/mulberry-cheat-sheet.html">help page</a> and although it&#8217;s more a reminder for myself, you can use it as an easy overview.</p>
+I&rsquo;ve created a <a href="/help/mulberry-cheat-sheet.html">help page</a> and although it&rsquo;s more a reminder for myself, you can use it as an easy overview.</p>
 
-<p>Next up: Further Mulberry app customization &#8211; adapting style and layout.</p>
+<p>Next up: Further Mulberry app customization &mdash; adapting style and layout.</p>
 
 <p>/C</p>
 </div>
@@ -317,6 +317,18 @@ I&#8217;ve created a <a href="/help/mulberry-cheat-sheet.html">help page</a> and
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/11/20/quick-test/">quick test</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/12/1ppp-1-page-project-pitch/">1PPP - 1 Page Project Pitch</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/03/starting-with-unity/">Starting with Unity</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/12/05/git-fusion-distributed-working-with-perforce/">Git-Fusion - Distributed working with Perforce, the more awesome way</a>
       </li>
     
@@ -324,23 +336,11 @@ I&#8217;ve created a <a href="/help/mulberry-cheat-sheet.html">help page</a> and
         <a href="/blog/2012/12/05/p4sandbox-distributed-working-with-perforce/">P4Sandbox - Distributed working with Perforce</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/12/05/not-dead-yet-dot-dot-dot/">Not dead yet...</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/02/my-work-environment/">My Work Environment (at work, 2012)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/05/31/generalized-motion-blur-contd/">Generalized Motion Blur (cont'd)</a>
-      </li>
-    
   </ul>
 </section>
 <section>
 	<h1>Tag Cloud</h1>
-	<span id="tag-cloud"><a href='/blog/categories/graphics' style='font-size: 140.0%'>graphics</a> <a href='/blog/categories/ios' style='font-size: 120.0%'>ios</a> <a href='/blog/categories/jekyll' style='font-size: 140.0%'>jekyll</a> <a href='/blog/categories/life' style='font-size: 120.0%'>life</a> <a href='/blog/categories/mulberry' style='font-size: 120.0%'>mulberry</a> <a href='/blog/categories/octopress' style='font-size: 160.0%'>octopress</a> <a href='/blog/categories/post-processing-effects' style='font-size: 140.0%'>post-processing effects</a> <a href='/blog/categories/rant' style='font-size: 120.0%'>rant</a> <a href='/blog/categories/shader' style='font-size: 120.0%'>shader</a> <a href='/blog/categories/tdd' style='font-size: 120.0%'>TDD</a> <a href='/blog/categories/web' style='font-size: 120.0%'>web</a> <a href='/blog/categories/webgl' style='font-size: 120.0%'>webgl</a> <a href='/blog/categories/work' style='font-size: 120.0%'>work</a> </span>
+	<span id="tag-cloud"><a href='/blog/categories/graphics' style='font-size: 160.0%'>graphics</a> <a href='/blog/categories/ios' style='font-size: 130.0%'>ios</a> <a href='/blog/categories/jekyll' style='font-size: 130.0%'>jekyll</a> <a href='/blog/categories/life' style='font-size: 130.0%'>life</a> <a href='/blog/categories/mulberry' style='font-size: 130.0%'>mulberry</a> <a href='/blog/categories/octopress' style='font-size: 160.0%'>octopress</a> <a href='/blog/categories/post-processing-effects' style='font-size: 160.0%'>post-processing effects</a> <a href='/blog/categories/projects' style='font-size: 130.0%'>projects</a> <a href='/blog/categories/rant' style='font-size: 130.0%'>rant</a> <a href='/blog/categories/shader' style='font-size: 130.0%'>shader</a> <a href='/blog/categories/tdd' style='font-size: 130.0%'>TDD</a> <a href='/blog/categories/web' style='font-size: 130.0%'>web</a> <a href='/blog/categories/webgl' style='font-size: 130.0%'>webgl</a> <a href='/blog/categories/work' style='font-size: 130.0%'>work</a> </span>
 </section>
 
 <section>
@@ -448,7 +448,7 @@ I&#8217;ve created a <a href="/help/mulberry-cheat-sheet.html">help page</a> and
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Chris Helmich -
+  Copyright &copy; 2013 - Chris Helmich -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

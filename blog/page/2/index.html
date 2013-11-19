@@ -9,7 +9,8 @@
   <meta name="author" content="Chris Helmich">
 
   
-  <meta name="description" content="What will this blog be about? I stated in my opening post that I will blog about graphics programming, programming on a general level, and add some &hellip;">
+  <meta name="description" content="I found this presentation about Mulberry and wanted to share it.
+It explains the core functionality of Mulberry. tl;dr Thinks to retain: Routes &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -91,6 +92,231 @@
   <header>
     
       <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2012/03/22/more-mulberry/">More Mulberry</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-22T01:25:00+09:00" pubdate data-updated="true">Mar 22<span>nd</span>, 2012</time>
+        
+         | <a href="/blog/2012/03/22/more-mulberry/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I found <a href="http://www.slideshare.net/rmurphey/getting-started-with-mulberry">this presentation about Mulberry</a> and wanted to share it.<br/>
+It explains the core functionality of Mulberry.</p>
+
+<p><strong>tl;dr</strong> Thinks to retain:</p>
+
+<p><em>Routes</em> manage high-level application state.</p>
+
+<p><em>Components</em> receive and render data and react to user input.</p>
+
+<p><em>Capabilities</em> provide data to components and broker communications between them.</p>
+
+<p><em>Page definitions</em> are reusable groupings of components and capabilities.</p>
+
+<p><em>Stores</em> persist data on the device, make that data query-able, and return model instances.</p>
+
+<p>/C</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
+        <h1 class="entry-title"><a href="/blog/2012/03/14/mulberry-jam-contd/">Mulberry Jam (Cont&#8217;d)</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-14T01:00:00+09:00" pubdate data-updated="true">Mar 14<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/03/14/mulberry-jam-contd/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Follow up on last week&rsquo;s post about Mulberry.</p>
+
+<p>There have been a couple of changes with Xcode 4.3, iOS 5.1 and some updates in Mulberry that gave me a hard time&hellip;
+In the end, I had to re-scaffold my test-apps from scratch and move my content over because of a few noteworthy changes.<br/>
+Incidentally, those changes concern the parts I did not treat in detail in my last post (or just brushed over without investigating it into depth),
+thus this follow-up makes a lot of sense.</p>
+
+<p>Giving the demo-app &ldquo;kitchensink&rdquo; (located in <code>demos</code>) a closer look cleared a couple of questions I still had, so here I go:</p>
+
+<h2>Customization</h2>
+
+<h3>Page-defs</h3>
+
+<p>A page-def defines the template for generated pages, i.e. the layout, components and capabilities to be used on a page.<br/>
+Custom page-defs can be generated with the command below:</p>
+
+<pre><code>mulberry create page_def &lt;name&gt;
+</code></pre>
+
+<p>which will create a file at <code>&lt;app-root&gt;/page_defs/&lt;name&gt;.yml</code>.<br/>
+More info <a href="https://github.com/Toura/mulberry/wiki/Page-Definitions">here</a></p>
+
+<p>All pre-existing page-defs lie in <code>&lt;mulberry-root&gt;/base_apps/toura/page_defs</code> and have their purpose written in their name, making it easy to guess what they may be intended for.<br/>
+Here&rsquo;s a list of them, subject to changes as new versions arise:</p>
+
+<pre><code>audio-with-images-phone.yml
+audio-with-images-tablet.yml
+debug.yml
+default.yml
+favorites.yml
+feed-item.yml
+feed-list-phone.yml
+feed-list-tablet.yml
+full-screen-images.yml
+google-map-phone.yml
+google-map-tablet.yml
+grid-view.yml
+home-phone.yml
+home-tablet.yml
+home-with-header-phone.yml
+home-with-header-tablet.yml
+hotspots.yml
+images-and-text-phone.yml
+images-and-text-tablet.yml
+location-list.yml
+node-gallery.yml
+search.yml
+videos-and-text-phone.yml
+videos-and-text-tablet.yml
+</code></pre>
+
+<p>If you are creating your own page-defs for more than one project, it would probably make sense to put them inside this folder (and to commit them back to the Mulberry project in order to contribute to it).</p>
+
+<p>A page-def defines which components will be visible for pages based on it. E.g.:</p>
+
+<pre><code>home-with-header-phone:
+  screens:
+  - name: index
+    backgroundImage: true
+    regions:
+    - className: header-image
+      components:
+      - PageHeaderImage
+
+    - scrollable: true
+      components:
+      - BodyText
+      - ChildNodes
+
+    - className: nav
+      components:
+      - AppNav
+</code></pre>
+
+<h3>Components</h3>
+
+<pre><code>mulberry create component &lt;name&gt;
+</code></pre>
+
+<p>which will create a Dojo UI component at <code>&lt;app-root&gt;/app/components/&lt;name&gt;.js</code> and <code>&lt;app-root&gt;/app/components/&lt;name&gt;/&lt;name&gt;.haml</code>).<br/>
+See <a href="https://github.com/Toura/mulberry/wiki/Creating-Custom-Components">here</a> for more info.</p>
+
+<h3>Capability</h3>
+
+<p><strong>obsolete</strong></p>
+
+<pre><code>mulberry create capability &lt;name&gt;
+</code></pre>
+
+<p>which will create a file at <code>&lt;app-root&gt;/javascript/capabilities/&lt;name&gt;.js</code>.<br/>
+<a href="https://github.com/Toura/mulberry/wiki/Capabilities">More info</a></p>
+
+<h3>Datasource</h3>
+
+<pre><code>mulberry create datasource &lt;name&gt;
+</code></pre>
+
+<p>which will create a JSON file at <code>&lt;app-root&gt;/assets/data/&lt;name&gt;.json</code>. It can hold any data (as long as it&rsquo;s valid JSON) and it&rsquo;s up to the app to implement the functionality to read and use it.</p>
+
+<h3>Feature flags</h3>
+
+<p>See <a href="https://github.com/Toura/mulberry/wiki/Feature-Flags">here</a> for info on feature flags that determine whether a given feature is active or not.</p>
+
+<h2>Xcode-side customization</h2>
+
+<h3>App Icon, Splash Screen, and Project file</h3>
+
+<p>When generating the app, the default PhoneGap app icon and splash screen, as well as the default Toura (xcodeproj) projects are copied into the app&rsquo;s <code>&lt;app-root&gt;/build</code> folder,
+where they can be further customized. (Although I&rsquo;m not sure if re-generating the app overwrites the customized versions).</p>
+
+<p>The source files are located at <code>&lt;mulberry-root&gt;/builder/project_templates/iOS/Toura</code> for the projects and further below in <code>&lt;mulberry-root&gt;/builder/project_templates/iOS/Toura/Resources/icons</code>
+and <code>&lt;mulberry-root&gt;/builder/project_templates/iOS/Toura/Resources/splash</code> respectively for icons and splash screens.</p>
+
+<p>It would be a nice extension to Mulberry if I could refer to my custom icons, loading screens, etc. in the config.yml and having those replace the default versions.</p>
+
+<h3>Universal build</h3>
+
+<p>At the moment, the iPhone and iPad have 2 separate projects (<code>Toura.xcodeproj</code> and <code>Toura-iPad.xcodeproj</code>).
+But I guess, having a third <code>Toura-universal.xcodeproj</code> for universal apps might be another welcome extension.</p>
+
+<h3>Automatic build</h3>
+
+<p>Command line and Jenkins integration
+<a href="http://nachbaur.com/blog/building-ios-apps-for-over-the-air-adhoc-distribution">This link</a> looks helpful.</p>
+
+<p><strong>tl;dr</strong> I hope this short guide was useful to you.<br/>
+I&rsquo;ve created a <a href="/help/mulberry-cheat-sheet.html">help page</a> and although it&rsquo;s more a reminder for myself, you can use it as an easy overview.</p>
+
+<p>Next up: Further Mulberry app customization &mdash; adapting style and layout.</p>
+
+<p>/C</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <!-- Now we're back to normal posts. Note the links used under href in both headers.-->
         <h1 class="entry-title"><a href="/blog/2012/03/01/an-outlook-and-some-orientation/">An Outlook and Some Orientation</a></h1>
       
     
@@ -134,7 +360,7 @@
 
 <ul>
 <li>Using PhoneGap to create web technology-based iOS apps
-&#8211;  automating parts of the build process</li>
+&mdash;  automating parts of the build process</li>
 <li>Using Mulberry to create web technology-based iOS apps</li>
 <li>Other tools to create iOS apps</li>
 </ul>
@@ -155,10 +381,10 @@
 <li>Refactoring</li>
 <li>Optimization</li>
 <li>Things I run into at work</li>
-<li>The &#8220;dark magic&#8221; of language mixing
-&#8211;  Preprocessor and templates
-&#8211;  Obj-C and C++ templates (I see you gasping in horror at the sheer idea of this).
-&#8211;  Preprocessor code generation</li>
+<li>The &ldquo;dark magic&rdquo; of language mixing
+&mdash;  Preprocessor and templates
+&mdash;  Obj-C and C++ templates (I see you gasping in horror at the sheer idea of this).
+&mdash;  Preprocessor code generation</li>
 </ul>
 
 
@@ -196,10 +422,10 @@
 
 <p>I might want to write (more or less academic) papers and submit them for review. You will find them here as well.</p>
 
-<p>I will probably edit this list over time&#8230;</p>
+<p>I will probably edit this list over time&hellip;</p>
 
 <p><strong> tl;dr </strong><br/>
-I have no clue what I will write about on this blog. But be sure that it&#8217;ll be code-related.</p>
+I have no clue what I will write about on this blog. But be sure that it&rsquo;ll be code-related.</p>
 
 <p>/C</p>
 </div>
@@ -241,17 +467,17 @@ I have no clue what I will write about on this blog. But be sure that it&#8217;l
   </header>
 
 
-  <div class="entry-content"><p>If you&#8217;ve followed this blog, you might have noticed a couple of changes in the last days.
-In fact, I&#8217;ve been playing around with customizing Octopress and added a couple of custom asides.</p>
+  <div class="entry-content"><p>If you&rsquo;ve followed this blog, you might have noticed a couple of changes in the last days.
+In fact, I&rsquo;ve been playing around with customizing Octopress and added a couple of custom asides.</p>
 
 <h2>Coderwall</h2>
 
-<p>I wanted to add my Coderwall badges in the asides. A bit of googling lead me to <a href="http://tzangms.com">another Octopress blog</a>, which was using <a href="http://mizzy.org/blog/2012/01/13/coderwall-badges-on-the-sidebar/">Mizzy</a>&#8217;s code to display the badges. From there, it was pretty easy to extract the Javascript code from the page source. I only found the original author&#8217;s page later today, but by then, I had already a working version.</p>
+<p>I wanted to add my Coderwall badges in the asides. A bit of googling lead me to <a href="http://tzangms.com">another Octopress blog</a>, which was using <a href="http://mizzy.org/blog/2012/01/13/coderwall-badges-on-the-sidebar/">Mizzy</a>&rsquo;s code to display the badges. From there, it was pretty easy to extract the Javascript code from the page source. I only found the original author&rsquo;s page later today, but by then, I had already a working version.</p>
 
-<p>As customization on the original code, I added the img@alt and img@title attributes to be generated from Coderwall&#8217;s JSON response data. This gives a nice addition for hovering over the badge to get its description, and an alternative description for non-graphic browsers.</p>
+<p>As customization on the original code, I added the img@alt and img@title attributes to be generated from Coderwall&rsquo;s JSON response data. This gives a nice addition for hovering over the badge to get its description, and an alternative description for non-graphic browsers.</p>
 
 <figure class='code'><figcaption><span> (coderwall.html)</span> <a href='/downloads/code/../../_includes/asides/coderwall.html'>download</a></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -310,10 +536,10 @@ In fact, I&#8217;ve been playing around with customizing Octopress and added a c
 
 <h2>Xbox Live</h2>
 
-<p>The second custom aside I created follows the implementation as described on the official Xbox site, which is using an iframe to embed the card. I don&#8217;t really like the iframe to embed an external page, but this implementation was small and function, which is the essential.</p>
+<p>The second custom aside I created follows the implementation as described on the official Xbox site, which is using an iframe to embed the card. I don&rsquo;t really like the iframe to embed an external page, but this implementation was small and function, which is the essential.</p>
 
 <figure class='code'><figcaption><span> (xboxlive.html)</span> <a href='/downloads/code/../../_includes/asides/xboxlive.html'>download</a></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -337,7 +563,7 @@ In fact, I&#8217;ve been playing around with customizing Octopress and added a c
 <p>Given you have a website that generates nice gamercards (there are ton of thems), you can use the above code to include your custom gamercard as an aside.</p>
 
 <p><strong> tl;dr </strong>
-Creating asides is super easy with Jekyll/Octopress. And I&#8217;ll probably create a few more for fun.</p>
+Creating asides is super easy with Jekyll/Octopress. And I&rsquo;ll probably create a few more for fun.</p>
 
 <p>/C</p>
 </div>
@@ -379,33 +605,33 @@ Creating asides is super easy with Jekyll/Octopress. And I&#8217;ll probably cre
   </header>
 
 
-  <div class="entry-content"><p>I&#8217;m not a web developer by birth.
-I&#8217;ve done some web development as cheap jobs when I was a student. As such, I knew the vital parts of PHP, some bits of Javascript and of course the HTML4 DOM and the basics of CSS. Just enough to pound out a (-cheap-looking- programmer art) webpage, with MySQL for database support.
+  <div class="entry-content"><p>I&rsquo;m not a web developer by birth.
+I&rsquo;ve done some web development as cheap jobs when I was a student. As such, I knew the vital parts of PHP, some bits of Javascript and of course the HTML4 DOM and the basics of CSS. Just enough to pound out a (-cheap-looking- programmer art) webpage, with MySQL for database support.
 That was between 1999 and 2006. Then I graduated.</p>
 
 <p>Not that web development was boring, but since the web bubble just exploded when I was in my 2nd year at University, I had some prejudices to web development being a good career path. Plus, game programming was something I wanted to do since my childhood, and graphics programming was something I studied, I chose the path of a graphics programmer, and not the one of a web developper.</p>
 
-<p>Hence, I didn&#8217;t follow the evolutions that closely.
-Well, I saw XHTML coming during the XML boom &#8211; put everything into XML, and if you need the data in a different format, add some XML layer on top of it &#8211; and going, I saw HTML5 arriving to make the web better (and played Apple&#8217;s &#8220;Checkers&#8221; demo countless of times), saw the rise of CSS, to the point of CSS3 (I liked the part where it killed the old tablosaurs), and WebGL arriving (after seeing VRML and X3D dying their all-to-merited death), all that without really taking part in those changes.</p>
+<p>Hence, I didn&rsquo;t follow the evolutions that closely.
+Well, I saw XHTML coming during the XML boom &mdash; put everything into XML, and if you need the data in a different format, add some XML layer on top of it &mdash; and going, I saw HTML5 arriving to make the web better (and played Apple&rsquo;s &ldquo;Checkers&rdquo; demo countless of times), saw the rise of CSS, to the point of CSS3 (I liked the part where it killed the old tablosaurs), and WebGL arriving (after seeing VRML and X3D dying their all-to-merited death), all that without really taking part in those changes.</p>
 
-<p>And now, in 2012, I finally decided to relaunch my blog in a different form (I had a self-hosted WordPress blog, but I let it die without updates, neither in the form of WP patches, nor in content) and found this Octopress thingy I am using, which looks to me that it&#8217;s using a great bunch of new technologies, that didn&#8217;t ring any bells until now: SASS, Liquid, Jekyll, jQuery, etc.</p>
+<p>And now, in 2012, I finally decided to relaunch my blog in a different form (I had a self-hosted WordPress blog, but I let it die without updates, neither in the form of WP patches, nor in content) and found this Octopress thingy I am using, which looks to me that it&rsquo;s using a great bunch of new technologies, that didn&rsquo;t ring any bells until now: SASS, Liquid, Jekyll, jQuery, etc.</p>
 
-<p>So I&#8217;m entering totally new terrain, which is both terrifying (in the amount of new stuff to learn) and interesting (in the amount of new stuff to discover) at the same time, and I&#8217;ll be blogging about my discoverings here from time to time.</p>
+<p>So I&rsquo;m entering totally new terrain, which is both terrifying (in the amount of new stuff to learn) and interesting (in the amount of new stuff to discover) at the same time, and I&rsquo;ll be blogging about my discoverings here from time to time.</p>
 
-<p>Besides trying to configure this site to look a bit &#8220;different&#8221; from the vanilla Octopress theme, I have one other motivation to go all this way:
-I was asked by some very good friends if I could produce some small iOS app for their organization. Hence I&#8217;ve been spending some time to look into possible solutions to produce an app (possibly not limited to iOS) in the short amount of time I have besides work.</p>
+<p>Besides trying to configure this site to look a bit &ldquo;different&rdquo; from the vanilla Octopress theme, I have one other motivation to go all this way:
+I was asked by some very good friends if I could produce some small iOS app for their organization. Hence I&rsquo;ve been spending some time to look into possible solutions to produce an app (possibly not limited to iOS) in the short amount of time I have besides work.</p>
 
-<p>I already knew PhoneGap from some earlier &#8220;research&#8221;, but haven&#8217;t come to use it yet.
-But then I found Octopress, and Jekyll as a static page generator as its base, and this idea kinda stuck with me: If I&#8217;m going to put out a little app that&#8217;s going to contain little more than text, I could use those technologies to pound out an app pretty quickly. Modifying the styles could even be done by my friends, and since I could easily host its sources on github, it would make the updates pretty easy.</p>
+<p>I already knew PhoneGap from some earlier &ldquo;research&rdquo;, but haven&rsquo;t come to use it yet.
+But then I found Octopress, and Jekyll as a static page generator as its base, and this idea kinda stuck with me: If I&rsquo;m going to put out a little app that&rsquo;s going to contain little more than text, I could use those technologies to pound out an app pretty quickly. Modifying the styles could even be done by my friends, and since I could easily host its sources on github, it would make the updates pretty easy.</p>
 
-<p>Looking closer at my requirements, I found out that there&#8217;s already been someone with a similar idea, which has resulted in a project called Mulberry.</p>
+<p>Looking closer at my requirements, I found out that there&rsquo;s already been someone with a similar idea, which has resulted in a project called Mulberry.</p>
 
-<p>Mulberry is based on PhoneGap and Jekyll and allows to generate the &#8220;scaffolding&#8221; of an app for iOS and Android. I&#8217;ve been toying with for a couplke of hours today, but it looks pretty promising.</p>
+<p>Mulberry is based on PhoneGap and Jekyll and allows to generate the &ldquo;scaffolding&rdquo; of an app for iOS and Android. I&rsquo;ve been toying with for a couplke of hours today, but it looks pretty promising.</p>
 
-<p><strong>tl;dr</strong> Web development has gone a long way, and I&#8217;m looking forward to learn more about all these new technologies.
-Actually, it&#8217;s awesome to see all the new evolutions of web technologies, and even to be using them.</p>
+<p><strong>tl;dr</strong> Web development has gone a long way, and I&rsquo;m looking forward to learn more about all these new technologies.
+Actually, it&rsquo;s awesome to see all the new evolutions of web technologies, and even to be using them.</p>
 
-<p>On this matter of thought, if anyone knows how to put in a WebGL-powered tag cloud for the categories of my posts, I&#8217;d like to hear about it.</p>
+<p>On this matter of thought, if anyone knows how to put in a WebGL-powered tag cloud for the categories of my posts, I&rsquo;d like to hear about it.</p>
 
 <p>/C</p>
 </div>
@@ -449,16 +675,16 @@ Actually, it&#8217;s awesome to see all the new evolutions of web technologies, 
 
   <div class="entry-content"><p><strong>tl;dr</strong> I hereby declare this blog opened!</p>
 
-<p>Since my old WP blog died of (wilfull) neglect at least 2 years ago, I am starting a new one, and will try to keep it updated regularly. (I don&#8217;t promise anything, though).
+<p>Since my old WP blog died of (wilfull) neglect at least 2 years ago, I am starting a new one, and will try to keep it updated regularly. (I don&rsquo;t promise anything, though).
 My old blog was a more a mixture of political stuff, life blog, and coding, and also written in several languages, meaning that each post was a lot of extra work translating it.
-This time, I&#8217;ll keep it easy and blog only about coding stuff, and only in English.</p>
+This time, I&rsquo;ll keep it easy and blog only about coding stuff, and only in English.</p>
 
-<p>What coding stuff? (There&#8217;s a lot that would merit to be talked about).<br/>
-Since I&#8217;m a graphics programmer, there will be posts about graphics programming, i.e. shaders, graphics algorithms.<br/>
+<p>What coding stuff? (There&rsquo;s a lot that would merit to be talked about).<br/>
+Since I&rsquo;m a graphics programmer, there will be posts about graphics programming, i.e. shaders, graphics algorithms.<br/>
 But I will also cover more general programming, be it with subjects like refactoring,
-&#8220;dark magic&#8221; programming (the arcanes of mixing languages that should better not be mixed &#8211; more on that later), programming languages, etc.<br/>
+&ldquo;dark magic&rdquo; programming (the arcanes of mixing languages that should better not be mixed &mdash; more on that later), programming languages, etc.<br/>
 Also, I plan to write about my learning of C# with Unity3D.<br/>
-And since I&#8217;m currently rediscovering a lot of web programming that I just saw passing by in the last years, I will write about that as well.</p>
+And since I&rsquo;m currently rediscovering a lot of web programming that I just saw passing by in the last years, I will write about that as well.</p>
 
 <p>So far, for what I plan to blog about, but I will write a more specific post with some ideas later.</p>
 
@@ -502,11 +728,11 @@ And since I&#8217;m currently rediscovering a lot of web programming that I just
   </header>
 
 
-  <div class="entry-content"><p>Like the first words an infant says, a coder starts his &#8220;coder life&#8221; by printing those simple words.</p>
+  <div class="entry-content"><p>Like the first words an infant says, a coder starts his &ldquo;coder life&rdquo; by printing those simple words.</p>
 
 <p>More in detail, the point of creating a program that prints a little message is to prove that the programming statements are understood by the parser, can be translated into an abstract syntax, and finally translated into binary instructions understandable by the machine. In short, if this simple program can be compiled and linked, any other program can be built as well.</p>
 
-<p>As such, there&#8217;s nothing more appropriate as to start this dev blog by stating &#8220;Hello World&#8221;.
+<p>As such, there&rsquo;s nothing more appropriate as to start this dev blog by stating &ldquo;Hello World&rdquo;.
 I.e. if this post can be generated, any post can be generated.</p>
 
 <p><strong>tl;dr</strong>
@@ -540,6 +766,18 @@ This looks nicer than a generic lorem ipsum.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/11/20/quick-test/">quick test</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/12/1ppp-1-page-project-pitch/">1PPP - 1 Page Project Pitch</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/03/starting-with-unity/">Starting with Unity</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/12/05/git-fusion-distributed-working-with-perforce/">Git-Fusion - Distributed working with Perforce, the more awesome way</a>
       </li>
     
@@ -547,23 +785,11 @@ This looks nicer than a generic lorem ipsum.</p>
         <a href="/blog/2012/12/05/p4sandbox-distributed-working-with-perforce/">P4Sandbox - Distributed working with Perforce</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/12/05/not-dead-yet-dot-dot-dot/">Not dead yet&#8230;</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/02/my-work-environment/">My Work Environment (at work, 2012)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/05/31/generalized-motion-blur-contd/">Generalized Motion Blur (cont&#8217;d)</a>
-      </li>
-    
   </ul>
 </section>
 <section>
 	<h1>Tag Cloud</h1>
-	<span id="tag-cloud"><a href='/blog/categories/graphics' style='font-size: 140.0%'>graphics</a> <a href='/blog/categories/ios' style='font-size: 120.0%'>ios</a> <a href='/blog/categories/jekyll' style='font-size: 140.0%'>jekyll</a> <a href='/blog/categories/life' style='font-size: 120.0%'>life</a> <a href='/blog/categories/mulberry' style='font-size: 120.0%'>mulberry</a> <a href='/blog/categories/octopress' style='font-size: 160.0%'>octopress</a> <a href='/blog/categories/post-processing-effects' style='font-size: 140.0%'>post-processing effects</a> <a href='/blog/categories/rant' style='font-size: 120.0%'>rant</a> <a href='/blog/categories/shader' style='font-size: 120.0%'>shader</a> <a href='/blog/categories/tdd' style='font-size: 120.0%'>TDD</a> <a href='/blog/categories/web' style='font-size: 120.0%'>web</a> <a href='/blog/categories/webgl' style='font-size: 120.0%'>webgl</a> <a href='/blog/categories/work' style='font-size: 120.0%'>work</a> </span>
+	<span id="tag-cloud"><a href='/blog/categories/graphics' style='font-size: 160.0%'>graphics</a> <a href='/blog/categories/ios' style='font-size: 130.0%'>ios</a> <a href='/blog/categories/jekyll' style='font-size: 130.0%'>jekyll</a> <a href='/blog/categories/life' style='font-size: 130.0%'>life</a> <a href='/blog/categories/mulberry' style='font-size: 130.0%'>mulberry</a> <a href='/blog/categories/octopress' style='font-size: 160.0%'>octopress</a> <a href='/blog/categories/post-processing-effects' style='font-size: 160.0%'>post-processing effects</a> <a href='/blog/categories/projects' style='font-size: 130.0%'>projects</a> <a href='/blog/categories/rant' style='font-size: 130.0%'>rant</a> <a href='/blog/categories/shader' style='font-size: 130.0%'>shader</a> <a href='/blog/categories/tdd' style='font-size: 130.0%'>TDD</a> <a href='/blog/categories/web' style='font-size: 130.0%'>web</a> <a href='/blog/categories/webgl' style='font-size: 130.0%'>webgl</a> <a href='/blog/categories/work' style='font-size: 130.0%'>work</a> </span>
 </section>
 
 <section>
@@ -670,7 +896,7 @@ This looks nicer than a generic lorem ipsum.</p>
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Chris Helmich -
+  Copyright &copy; 2013 - Chris Helmich -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

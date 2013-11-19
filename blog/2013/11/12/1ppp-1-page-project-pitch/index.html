@@ -5,13 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Jekyll plugin for Graphviz - Code Alchemist</title>
+  <title>1PPP - 1 Page Project Pitch - Code Alchemist</title>
   <meta name="author" content="Chris Helmich">
 
   
-  <meta name="description" content="I stumbled over this small Jekyll plugin for Octopress
-which allows to use graphviz notation inside a blog post.
-original link Obviously, you need to &hellip;">
+  <meta name="description" content="We were recently invited to write a small project pitch on our own.
+I can&rsquo;t say if it was a genuine invitation to pitch new ideas
+or just &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +20,7 @@ original link Obviously, you need to &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://kagekirin.github.com/blog/2012/04/04/jekyll-plugin-for-graphviz/">
+  <link rel="canonical" href="http://kagekirin.github.com/blog/2013/11/12/1ppp-1-page-project-pitch/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -90,7 +90,7 @@ original link Obviously, you need to &hellip;">
   <header>
     
       
-        <h1 class="entry-title">Jekyll Plugin for Graphviz</h1>
+        <h1 class="entry-title">1PPP - 1 Page Project Pitch</h1>
       
     
     
@@ -107,7 +107,7 @@ original link Obviously, you need to &hellip;">
   
 
 
-<time datetime="2012-04-04T23:28:00+09:00" pubdate data-updated="true">Apr 4<span>th</span>, 2012</time>
+<time datetime="2013-11-12T10:54:00+09:00" pubdate data-updated="true">Nov 12<span>th</span>, 2013</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -116,53 +116,132 @@ original link Obviously, you need to &hellip;">
   </header>
 
 
-<div class="entry-content"><p>I stumbled over this small Jekyll plugin for Octopress
-which allows to use <a href="http://www.graphviz.org/">graphviz</a> notation inside a blog post.<br/>
-<a href="http://dryman.github.com/blog/2012/04/04/jekyll-graphviz-plugin/">original link</a></p>
+<div class="entry-content"><p>We were recently invited to write a small project pitch on our own.<br/>
+I can&rsquo;t say if it was a genuine invitation to pitch new ideas
+or just because management needed a follow up project,
+but I kinda liked the idea.</p>
 
-<p>Obviously, you need to have graphviz installed on your generating system.
-(<code>port install graphviz</code> should do it if you have MacPorts installed, or well, <a href="http://mxcl.github.com/homebrew/">Brew</a>).</p>
+<p>Usually, a GDD (Game Design Document) fills up several pages,
+or better: an internal project wiki;
+while a full blown pitch takes at least 30 slides of media presentation
+with a concept video, several concept artworks
+and a presentation of the studio of the same size.
+The pitches on Kickstarter give you an idea for what I mean.</p>
 
-<p>Here&#8217;s a short test</p>
+<p>Which is why a &ldquo;1 Page Project Pitch&rdquo;
+&mdash; or &ldquo;1PPP&rdquo; to introduce the term &mdash;
+seems like a good idea to publish a game idea,
+however ripe this idea might be.</p>
 
-<pre><code>{\% graphviz \%}
-  digraph G {
-  compound=true;
-  subgraph cluster0 {
-    a -&gt; b;
-    a -&gt; c;
-    b -&gt; d;
-    c -&gt; d;
-  }
-  subgraph cluster1 {
-    e -&gt; g;
-    e -&gt; f;
-  }
-  b -&gt; f [lhead=cluster1];
-  d -&gt; e;
-  c -&gt; g [ltail=cluster0, lhead=cluster1];
-  c -&gt; e [ltail=cluster0];
-  d -&gt; h;
-}
-{\% endgraphviz \%}
-</code></pre>
+<p>Let&rsquo;s lay out a few rules to allow the 1PPP
+to be as precise and brief as possible.</p>
 
-<p>should give the diagram below:</p>
+<h2>1PPP &mdash; the rules</h2>
 
-<p>Liquid error: undefined method `join&#8217; for #&lt;String:0x007f9dcc173740></p>
+<h3>Brievity: at most one A4 page</h3>
 
-<p>Now, where I see great use for this plugin (and probably gonna use it in the future), is to generate UML diagrams to describe a given architecture, flow charts to describe data or work flows, or schemata describing some algorithm.</p>
+<p>A 1PPP should be short and not exceed a A4 page when printed out in a readable font.</p>
 
-<p>You probably should install the plugin from
-<a href="https://github.com/dryman/dryman.github.com/blob/src/plugins/graphviz_block.rb">its repository</a>
-or wait until it has been integrated into the mainline Octopress branch.</p>
+<h3>Precision: focus on defining the core idea</h3>
 
-<p>And for the hardcore coders, it should be possible to add it to Mulberry/Toura as well, as it&#8217;s based on Jekyll as well.
-(Although I see hardly any need to generate diagrams for an app. Then again, there might be a need for it).</p>
+<p>A 1PPP should focus on describing the core game idea,
+the game&rsquo;s core mechanics,
+the game characters (if the characters play a rather major role in the game),
+and optionally the game world and its inhabitants.</p>
 
-<p>EDIT: I just saw a perfect application for graphs in an app that I&#8217;m working on, namely, a diagram for tournaments or championships, to show how the candidates (fighters in this case) advance from round to round.</p>
+<p>The latter points about characters, world etc. are prone to change anyway
+between the idea pitch and the GDD creation,
+so I wouldn&rsquo;t lose time detailing them more than needed to convey the idea.</p>
 
-<p>/C</p>
+<h3>Ludistic Pitch: where&rsquo;s the fun?</h3>
+
+<p>The maybe singlemost important point of the 1PPP:
+where is the fun in the game?</p>
+
+<p>Focus on describing how the game mechanics laid out above will end up being fun.
+Also, lay out its genre (if it can be classified) to give a more precise idea.</p>
+
+<h3>Financial Pitch: where&rsquo;s the money?</h3>
+
+<p>The second important point of the 1PPP:
+how is your game going to generate money?</p>
+
+<p>Ok, I&rsquo;m sure, a lot of readers will now argue that games should be fun
+and not worry about physically things like money,
+but at the end of the day, the developers have a life as well and need to pay rent, feed their family, etc.
+Plus, if you&rsquo;re pitching the idea to a publisher, this is a point he&rsquo;ll be most interested in.</p>
+
+<p>Another point to cover if the minimum technical budget (engine licences, platform licences) you would see fit for the project.</p>
+
+<h3>Artistic Pitch: what look for the game?</h3>
+
+<p>Optional pitch #1: is there a specific look you want for the game?<br/>
+Sometimes, a game idea rotates more about the general look-and-feel of game than the main mechanics.</p>
+
+<p>Music and sound choices also go in here.</p>
+
+<h3>Technical Pitch: anything technical goes here</h3>
+
+<p>Optional pitch #2: is there any specific technique you want to use for the game?
+This can cover everything from rendering, to special inputs, to code specifics.
+And as all other ideas, this is prone to change.</p>
+
+<h3>Story Pitch</h3>
+
+<p>Optional pitch #3: everything story-related, from game world, its inhabitants, the main characters etc.
+should be covered by this.
+The ideas might change, but sometimes they lay out the particular atmosphere you want to pitch as game idea.</p>
+
+<h3>Miscellanous Pitch</h3>
+
+<p>Optional pitch #4: everything else. That&rsquo;s open to you.</p>
+
+<h3>Realistic: stay down-to-earth</h3>
+
+<p>Stay down-to-earth with the previous pitches.
+It&rsquo;s good to expect money by making 10 million sales,
+but unless you&rsquo;re Rockstar pitching the next GTA, you probably won&rsquo;t get that much sales anyway.</p>
+
+<p>Also, for the financial pitch, try to come up with plausible values.</p>
+
+<h3>References: keep them to a minimum</h3>
+
+<p>Referencing other games is easy.
+But a &ldquo;like Final Fantasy&rdquo; or &ldquo;like Pokemon&rdquo; is not enough to describe game mechanics,
+even less to describe the core game mechanic.</p>
+
+<p>Also, your readers will probably have a different approach, or perspective,
+or just opinion
+about the games you&rsquo;re referencing,
+so a comparison goes against the &ldquo;precision&rdquo; part explained above.</p>
+
+<p>Plus, the opiniated part, your readers might dislike the games you&rsquo;re referencing,
+hence the comparison is a sure way to kill your pitch.</p>
+
+<p>Comparisons can be helpful if you just scribble down your ideas on a note
+to expand and iterate on them later. They should better not be part of the 1PPP.</p>
+
+<p>Plus, too many references will make you look like a copy-cat from the start,
+whereas descibing the game mechanics, even if they are 100% similar to the title
+you would be referencing, will not.</p>
+
+<h3>Platform: what will the game run on?</h3>
+
+<p>The part can be optional, but since your game mechanics might depend on it
+(touch controls for smartphone games VS joypad for console games VS mouse&amp;keyboard for PC games),
+it&rsquo;s probably better to note them.</p>
+
+<p>Besides controles, different platforms introduce different technical constraints,
+which,
+even if not addressed in the 1PPP,
+should be covered later in the GDD.</p>
+
+<p>Also, the platform part might decide the budget you can spend on the realization of the game.
+(See financial pitch).</p>
+
+<h2>tl;dr</h2>
+
+<p>With these rules laid out, I&rsquo;ll be applying them to my own game ideas and publish them as 1PPP on this blog from times to times.</p>
 </div>
 
 
@@ -185,12 +264,12 @@ or wait until it has been integrated into the mainline Octopress branch.</p>
   
 
 
-<time datetime="2012-04-04T23:28:00+09:00" pubdate data-updated="true">Apr 4<span>th</span>, 2012</time>
+<time datetime="2013-11-12T10:54:00+09:00" pubdate data-updated="true">Nov 12<span>th</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/jekyll/'>jekyll</a>, <a class='category' href='/blog/categories/octopress/'>octopress</a>
+    <a class='category' href='/blog/categories/projects/'>projects</a>
   
 </span>
 
@@ -199,7 +278,7 @@ or wait until it has been integrated into the mainline Octopress branch.</p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://kagekirin.github.com/blog/2012/04/04/jekyll-plugin-for-graphviz/" data-via="KageKirin" data-counturl="http://kagekirin.github.com/blog/2012/04/04/jekyll-plugin-for-graphviz/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://kagekirin.github.com/blog/2013/11/12/1ppp-1-page-project-pitch/" data-via="KageKirin" data-counturl="http://kagekirin.github.com/blog/2013/11/12/1ppp-1-page-project-pitch/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -212,10 +291,10 @@ or wait until it has been integrated into the mainline Octopress branch.</p>
     
     <p class="meta">
       
-        <a class="basic-alignment left articlenav" href="/blog/2012/03/22/more-mulberry/" title="Previous Post: More Mulberry">&laquo; More Mulberry</a>
+        <a class="basic-alignment left articlenav" href="/blog/2013/02/03/starting-with-unity/" title="Previous Post: Starting with Unity">&laquo; Starting with Unity</a>
       
       
-        <a class="basic-alignment right articlenav" href="/blog/2012/04/05/test-driven-shader-development-an-idea/" title="Next Post: Test-Driven Shader Development (an idea)">Test-Driven Shader Development (an idea) &raquo;</a>
+        <a class="basic-alignment right articlenav" href="/blog/2013/11/20/quick-test/" title="Next Post: quick test">quick test &raquo;</a>
       
     </p>
   </footer>
@@ -241,6 +320,18 @@ or wait until it has been integrated into the mainline Octopress branch.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/11/20/quick-test/">quick test</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/12/1ppp-1-page-project-pitch/">1PPP - 1 Page Project Pitch</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/03/starting-with-unity/">Starting with Unity</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/12/05/git-fusion-distributed-working-with-perforce/">Git-Fusion - Distributed working with Perforce, the more awesome way</a>
       </li>
     
@@ -248,23 +339,11 @@ or wait until it has been integrated into the mainline Octopress branch.</p>
         <a href="/blog/2012/12/05/p4sandbox-distributed-working-with-perforce/">P4Sandbox - Distributed working with Perforce</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/12/05/not-dead-yet-dot-dot-dot/">Not dead yet...</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/02/my-work-environment/">My Work Environment (at work, 2012)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/05/31/generalized-motion-blur-contd/">Generalized Motion Blur (cont'd)</a>
-      </li>
-    
   </ul>
 </section>
 <section>
 	<h1>Tag Cloud</h1>
-	<span id="tag-cloud"><a href='/blog/categories/graphics' style='font-size: 140.0%'>graphics</a> <a href='/blog/categories/ios' style='font-size: 120.0%'>ios</a> <a href='/blog/categories/jekyll' style='font-size: 140.0%'>jekyll</a> <a href='/blog/categories/life' style='font-size: 120.0%'>life</a> <a href='/blog/categories/mulberry' style='font-size: 120.0%'>mulberry</a> <a href='/blog/categories/octopress' style='font-size: 160.0%'>octopress</a> <a href='/blog/categories/post-processing-effects' style='font-size: 140.0%'>post-processing effects</a> <a href='/blog/categories/rant' style='font-size: 120.0%'>rant</a> <a href='/blog/categories/shader' style='font-size: 120.0%'>shader</a> <a href='/blog/categories/tdd' style='font-size: 120.0%'>TDD</a> <a href='/blog/categories/web' style='font-size: 120.0%'>web</a> <a href='/blog/categories/webgl' style='font-size: 120.0%'>webgl</a> <a href='/blog/categories/work' style='font-size: 120.0%'>work</a> </span>
+	<span id="tag-cloud"><a href='/blog/categories/graphics' style='font-size: 160.0%'>graphics</a> <a href='/blog/categories/ios' style='font-size: 130.0%'>ios</a> <a href='/blog/categories/jekyll' style='font-size: 130.0%'>jekyll</a> <a href='/blog/categories/life' style='font-size: 130.0%'>life</a> <a href='/blog/categories/mulberry' style='font-size: 130.0%'>mulberry</a> <a href='/blog/categories/octopress' style='font-size: 160.0%'>octopress</a> <a href='/blog/categories/post-processing-effects' style='font-size: 160.0%'>post-processing effects</a> <a href='/blog/categories/projects' style='font-size: 130.0%'>projects</a> <a href='/blog/categories/rant' style='font-size: 130.0%'>rant</a> <a href='/blog/categories/shader' style='font-size: 130.0%'>shader</a> <a href='/blog/categories/tdd' style='font-size: 130.0%'>TDD</a> <a href='/blog/categories/web' style='font-size: 130.0%'>web</a> <a href='/blog/categories/webgl' style='font-size: 130.0%'>webgl</a> <a href='/blog/categories/work' style='font-size: 130.0%'>work</a> </span>
 </section>
 
 <section>
@@ -372,7 +451,7 @@ or wait until it has been integrated into the mainline Octopress branch.</p>
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Chris Helmich -
+  Copyright &copy; 2013 - Chris Helmich -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
@@ -384,8 +463,8 @@ or wait until it has been integrated into the mainline Octopress branch.</p>
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://kagekirin.github.com/blog/2012/04/04/jekyll-plugin-for-graphviz/';
-        var disqus_url = 'http://kagekirin.github.com/blog/2012/04/04/jekyll-plugin-for-graphviz/';
+        var disqus_identifier = 'http://kagekirin.github.com/blog/2013/11/12/1ppp-1-page-project-pitch/';
+        var disqus_url = 'http://kagekirin.github.com/blog/2013/11/12/1ppp-1-page-project-pitch/';
         var disqus_script = 'embed.js';
       
     (function () {

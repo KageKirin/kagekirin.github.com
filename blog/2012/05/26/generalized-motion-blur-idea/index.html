@@ -131,17 +131,17 @@ would not require any motion blur,
 as the human brain would create
 the impression of blur
 to compensate for the
-eye&#8217;s framerate of 24 fps.
+eye&rsquo;s framerate of 24 fps.
 Sadly, such an approach is
 technically
-&#8211; rendering a 60+ frames
+&mdash; rendering a 60+ frames
 on current gen consoles
 is hardly possibly
 or would require other limitations
-in terms of rendering quality &#8211;
+in terms of rendering quality &mdash;
 and artistically limited
-&#8211; motion blur might be wanted
-to express certain aesthetics &#8211;
+&mdash; motion blur might be wanted
+to express certain aesthetics &mdash;
 hence not practical.</p>
 
 <p>The main goal is
@@ -162,7 +162,7 @@ the processus.</p>
 <h3>Nature of Motion Blur</h3>
 
 <p>Before we begin,
-let&#8217;s define
+let&rsquo;s define
 the nature of a motion blur.</p>
 
 <p>When we perceive
@@ -192,9 +192,9 @@ impression of afterimage.</p>
 it could be implemented using an Accumulation Buffer,
 but on modern machines,
 I would implement it
-to use the last frame&#8217;s final image
-(i.e. blurred with frame (t-2)&#8217;s final image)
-as an input to blend with the current frame&#8217;s final image.
+to use the last frame&rsquo;s final image
+(i.e. blurred with frame (t-2)&rsquo;s final image)
+as an input to blend with the current frame&rsquo;s final image.
 This would result in a series of recursive blurs,
 which might give a nice result.</p>
 
@@ -213,7 +213,7 @@ along their
 frame interpolated movement vector.</p>
 
 <p>It was used for example in the
-<a href="http://developer.amd.com/archive/legacydemos/pages/ATIRadeon9700Real-TimeDemos.aspx">Radeon 9700 Animusic &#8220;Pipe Dream&#8221; demo from ATI</a>
+<a href="http://developer.amd.com/archive/legacydemos/pages/ATIRadeon9700Real-TimeDemos.aspx">Radeon 9700 Animusic &ldquo;Pipe Dream&rdquo; demo from ATI</a>
 to apply a motion blur on the balls.</p>
 
 <p>The difficulty of the method lies
@@ -227,7 +227,7 @@ This works for simple objects where
 the start and end of said object are easily defined
 (e.g. spheres, as in the AMD demo),
 but becomes more difficult
-as the object&#8217;s shape gets more complex.</p>
+as the object&rsquo;s shape gets more complex.</p>
 
 <p>(Although it could be done by
 approximating each vertex to a unit sphere
@@ -252,7 +252,7 @@ and might lead to strangely deformed shapes).</p>
 
 <p>On modern PC GPUs, this could be solved by issuing
 more vertices to be drawn via a geometry shader.
-Current gen console GPUs on the other don&#8217;t
+Current gen console GPUs on the other don&rsquo;t
 support geometry shader per se,
 making this approach not practical
 for cross-platform titles.</p>
@@ -407,7 +407,7 @@ using the previous skin and world space matrices.</p>
 <p>The algorithm differs
 depending on how
 the skinning is computed,
-but given the case it&#8217;s done on the GPU,
+but given the case it&rsquo;s done on the GPU,
 it will look like follows:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -522,7 +522,7 @@ hence they fall out of choice for screen or world space motion vectors.</p>
 5.  resolve into a texture of possibly the same format as the render target surface.
 6.  using this velocity texture, apply a per-pixel linear blur on the scene texture.</p>
 
-<h2>More blurring&#8230;</h2>
+<h2>More blurring&hellip;</h2>
 
 <p>We can optimize and even batch more blurring into the motion blur pass,
 but I will post more on it a later post.</p>
@@ -611,6 +611,18 @@ More on blurring later.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/11/20/quick-test/">quick test</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/12/1ppp-1-page-project-pitch/">1PPP - 1 Page Project Pitch</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/03/starting-with-unity/">Starting with Unity</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/12/05/git-fusion-distributed-working-with-perforce/">Git-Fusion - Distributed working with Perforce, the more awesome way</a>
       </li>
     
@@ -618,23 +630,11 @@ More on blurring later.</p>
         <a href="/blog/2012/12/05/p4sandbox-distributed-working-with-perforce/">P4Sandbox - Distributed working with Perforce</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/12/05/not-dead-yet-dot-dot-dot/">Not dead yet...</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/02/my-work-environment/">My Work Environment (at work, 2012)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/05/31/generalized-motion-blur-contd/">Generalized Motion Blur (cont'd)</a>
-      </li>
-    
   </ul>
 </section>
 <section>
 	<h1>Tag Cloud</h1>
-	<span id="tag-cloud"><a href='/blog/categories/graphics' style='font-size: 140.0%'>graphics</a> <a href='/blog/categories/ios' style='font-size: 120.0%'>ios</a> <a href='/blog/categories/jekyll' style='font-size: 140.0%'>jekyll</a> <a href='/blog/categories/life' style='font-size: 120.0%'>life</a> <a href='/blog/categories/mulberry' style='font-size: 120.0%'>mulberry</a> <a href='/blog/categories/octopress' style='font-size: 160.0%'>octopress</a> <a href='/blog/categories/post-processing-effects' style='font-size: 140.0%'>post-processing effects</a> <a href='/blog/categories/rant' style='font-size: 120.0%'>rant</a> <a href='/blog/categories/shader' style='font-size: 120.0%'>shader</a> <a href='/blog/categories/tdd' style='font-size: 120.0%'>TDD</a> <a href='/blog/categories/web' style='font-size: 120.0%'>web</a> <a href='/blog/categories/webgl' style='font-size: 120.0%'>webgl</a> <a href='/blog/categories/work' style='font-size: 120.0%'>work</a> </span>
+	<span id="tag-cloud"><a href='/blog/categories/graphics' style='font-size: 160.0%'>graphics</a> <a href='/blog/categories/ios' style='font-size: 130.0%'>ios</a> <a href='/blog/categories/jekyll' style='font-size: 130.0%'>jekyll</a> <a href='/blog/categories/life' style='font-size: 130.0%'>life</a> <a href='/blog/categories/mulberry' style='font-size: 130.0%'>mulberry</a> <a href='/blog/categories/octopress' style='font-size: 160.0%'>octopress</a> <a href='/blog/categories/post-processing-effects' style='font-size: 160.0%'>post-processing effects</a> <a href='/blog/categories/projects' style='font-size: 130.0%'>projects</a> <a href='/blog/categories/rant' style='font-size: 130.0%'>rant</a> <a href='/blog/categories/shader' style='font-size: 130.0%'>shader</a> <a href='/blog/categories/tdd' style='font-size: 130.0%'>TDD</a> <a href='/blog/categories/web' style='font-size: 130.0%'>web</a> <a href='/blog/categories/webgl' style='font-size: 130.0%'>webgl</a> <a href='/blog/categories/work' style='font-size: 130.0%'>work</a> </span>
 </section>
 
 <section>
@@ -742,7 +742,7 @@ More on blurring later.</p>
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Chris Helmich -
+  Copyright &copy; 2013 - Chris Helmich -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

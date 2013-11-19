@@ -168,8 +168,8 @@ this is likely to not being that optimal
 when it comes to drawing thousands of particles.
 In this, it is going to require
 a little extra engineering effort
-to buffer the last frame&#8217;s particle positions
-and to inject them into the drawing of this frame&#8217;s ones
+to buffer the last frame&rsquo;s particle positions
+and to inject them into the drawing of this frame&rsquo;s ones
 during the motion blur pass.</p>
 
 <p>As this will double the drawcall cost,
@@ -208,11 +208,11 @@ by writing motion vectors
 directly into the motion buffer.
 This allows us to have a finer control
 over what kind of motion vectors get written,
-as they are based on a &#8220;motion vector&#8221; texture.<br/>
+as they are based on a &ldquo;motion vector&rdquo; texture.<br/>
 For example,
 a motion texture can hold a unique direction
-&#8211; the texture being then of one color with no grading &#8211;
-and turn this vector to the &#8220;right&#8221; direction through rotation
+&mdash; the texture being then of one color with no grading &mdash;
+and turn this vector to the &ldquo;right&rdquo; direction through rotation
 to write a motion vector.</p>
 
 <p>But since this texture based,
@@ -236,19 +236,19 @@ The next section covers even more batching.</p>
 <p>The main idea is
 to batch particle based effects,
 that produce a refractive-like visual,
-like heat-haze or underwater &#8220;wobbling&#8221;,
+like heat-haze or underwater &ldquo;wobbling&rdquo;,
 into the motion blur pass.<br/>
 Since the linear blur pass
 mostly consists of texture fetches
 from the scene buffer,
 we can piggy-back on this
-by &#8220;jittering&#8221; or &#8220;warping&#8221;,
+by &ldquo;jittering&rdquo; or &ldquo;warping&rdquo;,
 thus deforming,
 the screen-space texture coordinates.</p>
 
 <p>To batch this into our existing framework,
 we need to change the layout of the motion buffer a bit.
-Since the &#8220;warping&#8221; is nothing more
+Since the &ldquo;warping&rdquo; is nothing more
 than offsetting the screen-space coordinates,
 it requires 2 channels to be effective.
 Hence, the motion vector has to be reduced to 2 channels as well,
@@ -292,13 +292,13 @@ and can profit from being smoothly depth-blended,
 by modulating their strength
 with respect to a factor
 depending on the Z-buffer pixel depth
-and the particle&#8217;s.
+and the particle&rsquo;s.
 But these conditions have to fulfilled
 for the motion blur particles pass
 as well.</p>
 
 <p>To further optimize the particle passes,
-it&#8217;s possible to batch drawing
+it&rsquo;s possible to batch drawing
 the motion blur particles
 and the warp particles
 at the same,
@@ -403,6 +403,18 @@ Super idea: Batch screen-space warping particles into the motion particles.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/11/20/quick-test/">quick test</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/12/1ppp-1-page-project-pitch/">1PPP - 1 Page Project Pitch</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/02/03/starting-with-unity/">Starting with Unity</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/12/05/git-fusion-distributed-working-with-perforce/">Git-Fusion - Distributed working with Perforce, the more awesome way</a>
       </li>
     
@@ -410,23 +422,11 @@ Super idea: Batch screen-space warping particles into the motion particles.</p>
         <a href="/blog/2012/12/05/p4sandbox-distributed-working-with-perforce/">P4Sandbox - Distributed working with Perforce</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/12/05/not-dead-yet-dot-dot-dot/">Not dead yet...</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/06/02/my-work-environment/">My Work Environment (at work, 2012)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/05/31/generalized-motion-blur-contd/">Generalized Motion Blur (cont'd)</a>
-      </li>
-    
   </ul>
 </section>
 <section>
 	<h1>Tag Cloud</h1>
-	<span id="tag-cloud"><a href='/blog/categories/graphics' style='font-size: 140.0%'>graphics</a> <a href='/blog/categories/ios' style='font-size: 120.0%'>ios</a> <a href='/blog/categories/jekyll' style='font-size: 140.0%'>jekyll</a> <a href='/blog/categories/life' style='font-size: 120.0%'>life</a> <a href='/blog/categories/mulberry' style='font-size: 120.0%'>mulberry</a> <a href='/blog/categories/octopress' style='font-size: 160.0%'>octopress</a> <a href='/blog/categories/post-processing-effects' style='font-size: 140.0%'>post-processing effects</a> <a href='/blog/categories/rant' style='font-size: 120.0%'>rant</a> <a href='/blog/categories/shader' style='font-size: 120.0%'>shader</a> <a href='/blog/categories/tdd' style='font-size: 120.0%'>TDD</a> <a href='/blog/categories/web' style='font-size: 120.0%'>web</a> <a href='/blog/categories/webgl' style='font-size: 120.0%'>webgl</a> <a href='/blog/categories/work' style='font-size: 120.0%'>work</a> </span>
+	<span id="tag-cloud"><a href='/blog/categories/graphics' style='font-size: 160.0%'>graphics</a> <a href='/blog/categories/ios' style='font-size: 130.0%'>ios</a> <a href='/blog/categories/jekyll' style='font-size: 130.0%'>jekyll</a> <a href='/blog/categories/life' style='font-size: 130.0%'>life</a> <a href='/blog/categories/mulberry' style='font-size: 130.0%'>mulberry</a> <a href='/blog/categories/octopress' style='font-size: 160.0%'>octopress</a> <a href='/blog/categories/post-processing-effects' style='font-size: 160.0%'>post-processing effects</a> <a href='/blog/categories/projects' style='font-size: 130.0%'>projects</a> <a href='/blog/categories/rant' style='font-size: 130.0%'>rant</a> <a href='/blog/categories/shader' style='font-size: 130.0%'>shader</a> <a href='/blog/categories/tdd' style='font-size: 130.0%'>TDD</a> <a href='/blog/categories/web' style='font-size: 130.0%'>web</a> <a href='/blog/categories/webgl' style='font-size: 130.0%'>webgl</a> <a href='/blog/categories/work' style='font-size: 130.0%'>work</a> </span>
 </section>
 
 <section>
@@ -534,7 +534,7 @@ Super idea: Batch screen-space warping particles into the motion particles.</p>
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Chris Helmich -
+  Copyright &copy; 2013 - Chris Helmich -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

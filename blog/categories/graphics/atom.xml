@@ -4,7 +4,7 @@
   <title><![CDATA[Category: graphics | Code Alchemist]]></title>
   <link href="http://kagekirin.github.com/blog/categories/graphics/atom.xml" rel="self"/>
   <link href="http://kagekirin.github.com/"/>
-  <updated>2012-12-06T23:20:31+09:00</updated>
+  <updated>2013-11-20T01:10:31+09:00</updated>
   <id>http://kagekirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
@@ -70,8 +70,8 @@ this is likely to not being that optimal
 when it comes to drawing thousands of particles.
 In this, it is going to require
 a little extra engineering effort
-to buffer the last frame's particle positions
-and to inject them into the drawing of this frame's ones
+to buffer the last frame&rsquo;s particle positions
+and to inject them into the drawing of this frame&rsquo;s ones
 during the motion blur pass.</p>
 
 <p>As this will double the drawcall cost,
@@ -110,11 +110,11 @@ by writing motion vectors
 directly into the motion buffer.
 This allows us to have a finer control
 over what kind of motion vectors get written,
-as they are based on a "motion vector" texture.<br/>
+as they are based on a &ldquo;motion vector&rdquo; texture.<br/>
 For example,
 a motion texture can hold a unique direction
--- the texture being then of one color with no grading --
-and turn this vector to the "right" direction through rotation
+&mdash; the texture being then of one color with no grading &mdash;
+and turn this vector to the &ldquo;right&rdquo; direction through rotation
 to write a motion vector.</p>
 
 <p>But since this texture based,
@@ -138,19 +138,19 @@ The next section covers even more batching.</p>
 <p>The main idea is
 to batch particle based effects,
 that produce a refractive-like visual,
-like heat-haze or underwater "wobbling",
+like heat-haze or underwater &ldquo;wobbling&rdquo;,
 into the motion blur pass.<br/>
 Since the linear blur pass
 mostly consists of texture fetches
 from the scene buffer,
 we can piggy-back on this
-by "jittering" or "warping",
+by &ldquo;jittering&rdquo; or &ldquo;warping&rdquo;,
 thus deforming,
 the screen-space texture coordinates.</p>
 
 <p>To batch this into our existing framework,
 we need to change the layout of the motion buffer a bit.
-Since the "warping" is nothing more
+Since the &ldquo;warping&rdquo; is nothing more
 than offsetting the screen-space coordinates,
 it requires 2 channels to be effective.
 Hence, the motion vector has to be reduced to 2 channels as well,
@@ -192,13 +192,13 @@ and can profit from being smoothly depth-blended,
 by modulating their strength
 with respect to a factor
 depending on the Z-buffer pixel depth
-and the particle's.
+and the particle&rsquo;s.
 But these conditions have to fulfilled
 for the motion blur particles pass
 as well.</p>
 
 <p>To further optimize the particle passes,
-it's possible to batch drawing
+it&rsquo;s possible to batch drawing
 the motion blur particles
 and the warp particles
 at the same,
@@ -248,17 +248,17 @@ would not require any motion blur,
 as the human brain would create
 the impression of blur
 to compensate for the
-eye's framerate of 24 fps.
+eye&rsquo;s framerate of 24 fps.
 Sadly, such an approach is
 technically
--- rendering a 60+ frames
+&mdash; rendering a 60+ frames
 on current gen consoles
 is hardly possibly
 or would require other limitations
-in terms of rendering quality --
+in terms of rendering quality &mdash;
 and artistically limited
--- motion blur might be wanted
-to express certain aesthetics --
+&mdash; motion blur might be wanted
+to express certain aesthetics &mdash;
 hence not practical.</p>
 
 <p>The main goal is
@@ -279,7 +279,7 @@ the processus.</p>
 <h3>Nature of Motion Blur</h3>
 
 <p>Before we begin,
-let's define
+let&rsquo;s define
 the nature of a motion blur.</p>
 
 <p>When we perceive
@@ -309,9 +309,9 @@ impression of afterimage.</p>
 it could be implemented using an Accumulation Buffer,
 but on modern machines,
 I would implement it
-to use the last frame's final image
-(i.e. blurred with frame (t-2)'s final image)
-as an input to blend with the current frame's final image.
+to use the last frame&rsquo;s final image
+(i.e. blurred with frame (t-2)&rsquo;s final image)
+as an input to blend with the current frame&rsquo;s final image.
 This would result in a series of recursive blurs,
 which might give a nice result.</p>
 
@@ -330,7 +330,7 @@ along their
 frame interpolated movement vector.</p>
 
 <p>It was used for example in the
-<a href="http://developer.amd.com/archive/legacydemos/pages/ATIRadeon9700Real-TimeDemos.aspx">Radeon 9700 Animusic "Pipe Dream" demo from ATI</a>
+<a href="http://developer.amd.com/archive/legacydemos/pages/ATIRadeon9700Real-TimeDemos.aspx">Radeon 9700 Animusic &ldquo;Pipe Dream&rdquo; demo from ATI</a>
 to apply a motion blur on the balls.</p>
 
 <p>The difficulty of the method lies
@@ -344,7 +344,7 @@ This works for simple objects where
 the start and end of said object are easily defined
 (e.g. spheres, as in the AMD demo),
 but becomes more difficult
-as the object's shape gets more complex.</p>
+as the object&rsquo;s shape gets more complex.</p>
 
 <p>(Although it could be done by
 approximating each vertex to a unit sphere
@@ -364,7 +364,7 @@ and might lead to strangely deformed shapes).</p>
 
 <p>On modern PC GPUs, this could be solved by issuing
 more vertices to be drawn via a geometry shader.
-Current gen console GPUs on the other don't
+Current gen console GPUs on the other don&rsquo;t
 support geometry shader per se,
 making this approach not practical
 for cross-platform titles.</p>
@@ -388,7 +388,7 @@ float4 sscoords = float4x4(ssTC, zDepth, 1);</p>
 <p>float4 wpos_curr = mul(invViewProj_curr, sscoords);
 float4 wpos_prev = mul(invViewProj_prev, sscoords);</p>
 
-<p>float4 wmov = wpos_curr - wpos_prev;
+<p>float4 wmov = wpos_curr &ndash; wpos_prev;
 ```</p>
 
 <p>We can then project the movement vector back to screen space
@@ -484,7 +484,7 @@ using the previous skin and world space matrices.</p>
 <p>The algorithm differs
 depending on how
 the skinning is computed,
-but given the case it's done on the GPU,
+but given the case it&rsquo;s done on the GPU,
 it will look like follows:</p>
 
 <p>```
@@ -573,7 +573,7 @@ hence they fall out of choice for screen or world space motion vectors.</p>
 5.  resolve into a texture of possibly the same format as the render target surface.
 6.  using this velocity texture, apply a per-pixel linear blur on the scene texture.</p>
 
-<h2>More blurring...</h2>
+<h2>More blurring&hellip;</h2>
 
 <p>We can optimize and even batch more blurring into the motion blur pass,
 but I will post more on it a later post.</p>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rant | Code Alchemist]]></title>
   <link href="http://kagekirin.github.com/blog/categories/rant/atom.xml" rel="self"/>
   <link href="http://kagekirin.github.com/"/>
-  <updated>2012-12-06T23:20:31+09:00</updated>
+  <updated>2013-11-20T01:10:31+09:00</updated>
   <id>http://kagekirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
@@ -20,17 +20,17 @@
     <id>http://kagekirin.github.com/blog/2012/06/02/my-work-environment</id>
     <content type="html"><![CDATA[<p>One of those posts, where I rant about my work environment.</p>
 
-<p>At work, I'm pretty much bound to a Windows environment,
+<p>At work, I&rsquo;m pretty much bound to a Windows environment,
 since all the tools only work there.
-So, I'm running Windows7
+So, I&rsquo;m running Windows7
 (to which I got upgraded just recently, for the sake of my own sanity,
 which was at stake for using Vista in 2012)
 on a DELL Precision T3500 with AMD Radeon Graphics.<br/>
-For the IDE, it's naturally Visual Studio,
+For the IDE, it&rsquo;s naturally Visual Studio,
 namely Visual Studio 2008 Team System.
 Per default, I had no version of <a href="http://www.wholetomato.com/">Visual Assist X</a>,
 forcing me to buy my own license
-(talking about "tools of the trade" when you can't have access to the swiss army knife of VS).<br/>
+(talking about &ldquo;tools of the trade&rdquo; when you can&rsquo;t have access to the swiss army knife of VS).<br/>
 I also installed <a href="http://code.google.com/p/metalscroll/">MetalScroll</a>,
 which makes finding references inside of one file pretty easy.<br/>
 And <a href="http://www.xoreax.com/">IncrediBuild</a>,
@@ -39,57 +39,57 @@ due to some dirty tricks from the Isreali Embassy (the only provider of this pro
 which tries to suck the lifeblood out of japanese software companies through their pricing.</p>
 
 <p>For the source version control,
-we're using <a href="http://www,perforce.com">Perforce</a>,
-so I'm stuck with their tools,
+we&rsquo;re using <a href="http://www,perforce.com">Perforce</a>,
+so I&rsquo;m stuck with their tools,
 and despite there being a couple of welcome improvements in the latest versions,
 i.e. streams,
-I don't have access to them as the server is running in older version.
+I don&rsquo;t have access to them as the server is running in older version.
 In fact, I often wish (at least 5 times a day) I could use <a href="http://www.git-scm.com">git</a> locally,
-but the git-p4 bridges don't work that well.<br/>
-(The hg-p4 bridge does work well, but I don't remember the way I set it up at my former employer).</p>
+but the git-p4 bridges don&rsquo;t work that well.<br/>
+(The hg-p4 bridge does work well, but I don&rsquo;t remember the way I set it up at my former employer).</p>
 
 <p>For file editing related things (other than C++),
-I'm using <a href="http://notepadplusplus.sf.net">Notepad++</a>,
+I&rsquo;m using <a href="http://notepadplusplus.sf.net">Notepad++</a>,
 which, although not perfect,
-doesn't give me headaches about usability issues.</p>
+doesn&rsquo;t give me headaches about usability issues.</p>
 
 <p>I configured P4 to use P4merge for merging files,
 since I like the 3 way-view with
-"theirs", "base" and "ours" on the top,
-and "merge result" below.<br/>
-For diffs, I'm using a very handy tool called <a href="http://diffuse.sf.net">"Diffuse"</a>,
+&ldquo;theirs&rdquo;, &ldquo;base&rdquo; and &ldquo;ours&rdquo; on the top,
+and &ldquo;merge result&rdquo; below.<br/>
+For diffs, I&rsquo;m using a very handy tool called <a href="http://diffuse.sf.net">&ldquo;Diffuse&rdquo;</a>,
 which allows for super fast diff'ing with only keyboard interaction.
-(The only issue I'm having with it is that it tends to break files with japanese encoding --
-but then again, it's the comments that are in japanese,
-and I just delete them since "you shouldn't need to comment your code" ;p ).</p>
+(The only issue I&rsquo;m having with it is that it tends to break files with japanese encoding &mdash;
+but then again, it&rsquo;s the comments that are in japanese,
+and I just delete them since &ldquo;you shouldn&rsquo;t need to comment your code&rdquo; ;p ).</p>
 
 <p>For other file related actions,
-I'm either using the vanilla explorer,
+I&rsquo;m either using the vanilla explorer,
 or <a href="http://www.ghisler.com">Total Commander</a>
 (which is my preference when it comes to moving lots of files).</p>
 
 <p><a href="http://www.physics.ucla.edu/~grosenth/jwpce.html">JWPce</a>
 is my preference for writing Japanese,
 as it includes a pretty neat dictionary,
-and I'm so used to this tool,
+and I&rsquo;m so used to this tool,
 that I can hardly read Japanese without.<br/>
-(Yeah, I'm lazy and I know it).</p>
+(Yeah, I&rsquo;m lazy and I know it).</p>
 
 <p>For the other dev tools,
-it's pretty classic,
+it&rsquo;s pretty classic,
 XDK for working on Xbox360,
 and SN Tools for working on PS3.</p>
 
 <p>Oh yeah, one of the tools that come in handy is
-<a href="https://www.virtualbox.org">Oracle's -Sun's- Virtual Machine VirtualBox</a>.
+<a href="https://www.virtualbox.org">Oracle&rsquo;s -Sun&rsquo;s- Virtual Machine VirtualBox</a>.
 I have already a (several) Linux installation to automatize some backups
-and I'm running one from time to time to test software before installing it on my main system.
-It's also pretty cool to track down hardware or driver issues that occur on the host system,
+and I&rsquo;m running one from time to time to test software before installing it on my main system.
+It&rsquo;s also pretty cool to track down hardware or driver issues that occur on the host system,
 but should not be reproducible on the VM.<br/>
 (Fun fact, the XDK tools tend to work better from within the VM than on the host system).</p>
 
-<p>And that's pretty much it.<br/>
-I'm using some batch files to simplify a couple of workflows,
+<p>And that&rsquo;s pretty much it.<br/>
+I&rsquo;m using some batch files to simplify a couple of workflows,
 but nothing really extraordinary.</p>
 
 <p>/C</p>

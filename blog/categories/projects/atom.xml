@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: projects | Code Alchemist]]></title>
+  <link href="http://kagekirin.github.com/blog/categories/projects/atom.xml" rel="self"/>
+  <link href="http://kagekirin.github.com/"/>
+  <updated>2013-11-20T01:10:31+09:00</updated>
+  <id>http://kagekirin.github.com/</id>
+  <author>
+    <name><![CDATA[Chris Helmich]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[1PPP - 1 Page Project Pitch]]></title>
+    <link href="http://kagekirin.github.com/blog/2013/11/12/1ppp-1-page-project-pitch/"/>
+    <updated>2013-11-12T10:54:00+09:00</updated>
+    <id>http://kagekirin.github.com/blog/2013/11/12/1ppp-1-page-project-pitch</id>
+    <content type="html"><![CDATA[<p>We were recently invited to write a small project pitch on our own.<br/>
+I can&rsquo;t say if it was a genuine invitation to pitch new ideas
+or just because management needed a follow up project,
+but I kinda liked the idea.</p>
+
+<p>Usually, a GDD (Game Design Document) fills up several pages,
+or better: an internal project wiki;
+while a full blown pitch takes at least 30 slides of media presentation
+with a concept video, several concept artworks
+and a presentation of the studio of the same size.
+The pitches on Kickstarter give you an idea for what I mean.</p>
+
+<p>Which is why a &ldquo;1 Page Project Pitch&rdquo;
+&mdash; or &ldquo;1PPP&rdquo; to introduce the term &mdash;
+seems like a good idea to publish a game idea,
+however ripe this idea might be.</p>
+
+<p>Let&rsquo;s lay out a few rules to allow the 1PPP
+to be as precise and brief as possible.</p>
+
+<h2>1PPP &mdash; the rules</h2>
+
+<h3>Brievity: at most one A4 page</h3>
+
+<p>A 1PPP should be short and not exceed a A4 page when printed out in a readable font.</p>
+
+<h3>Precision: focus on defining the core idea</h3>
+
+<p>A 1PPP should focus on describing the core game idea,
+the game&rsquo;s core mechanics,
+the game characters (if the characters play a rather major role in the game),
+and optionally the game world and its inhabitants.</p>
+
+<p>The latter points about characters, world etc. are prone to change anyway
+between the idea pitch and the GDD creation,
+so I wouldn&rsquo;t lose time detailing them more than needed to convey the idea.</p>
+
+<h3>Ludistic Pitch: where&rsquo;s the fun?</h3>
+
+<p>The maybe singlemost important point of the 1PPP:
+where is the fun in the game?</p>
+
+<p>Focus on describing how the game mechanics laid out above will end up being fun.
+Also, lay out its genre (if it can be classified) to give a more precise idea.</p>
+
+<h3>Financial Pitch: where&rsquo;s the money?</h3>
+
+<p>The second important point of the 1PPP:
+how is your game going to generate money?</p>
+
+<p>Ok, I&rsquo;m sure, a lot of readers will now argue that games should be fun
+and not worry about physically things like money,
+but at the end of the day, the developers have a life as well and need to pay rent, feed their family, etc.
+Plus, if you&rsquo;re pitching the idea to a publisher, this is a point he&rsquo;ll be most interested in.</p>
+
+<p>Another point to cover if the minimum technical budget (engine licences, platform licences) you would see fit for the project.</p>
+
+<h3>Artistic Pitch: what look for the game?</h3>
+
+<p>Optional pitch #1: is there a specific look you want for the game?<br/>
+Sometimes, a game idea rotates more about the general look-and-feel of game than the main mechanics.</p>
+
+<p>Music and sound choices also go in here.</p>
+
+<h3>Technical Pitch: anything technical goes here</h3>
+
+<p>Optional pitch #2: is there any specific technique you want to use for the game?
+This can cover everything from rendering, to special inputs, to code specifics.
+And as all other ideas, this is prone to change.</p>
+
+<h3>Story Pitch</h3>
+
+<p>Optional pitch #3: everything story-related, from game world, its inhabitants, the main characters etc.
+should be covered by this.
+The ideas might change, but sometimes they lay out the particular atmosphere you want to pitch as game idea.</p>
+
+<h3>Miscellanous Pitch</h3>
+
+<p>Optional pitch #4: everything else. That&rsquo;s open to you.</p>
+
+<h3>Realistic: stay down-to-earth</h3>
+
+<p>Stay down-to-earth with the previous pitches.
+It&rsquo;s good to expect money by making 10 million sales,
+but unless you&rsquo;re Rockstar pitching the next GTA, you probably won&rsquo;t get that much sales anyway.</p>
+
+<p>Also, for the financial pitch, try to come up with plausible values.</p>
+
+<h3>References: keep them to a minimum</h3>
+
+<p>Referencing other games is easy.
+But a &ldquo;like Final Fantasy&rdquo; or &ldquo;like Pokemon&rdquo; is not enough to describe game mechanics,
+even less to describe the core game mechanic.</p>
+
+<p>Also, your readers will probably have a different approach, or perspective,
+or just opinion
+about the games you&rsquo;re referencing,
+so a comparison goes against the &ldquo;precision&rdquo; part explained above.</p>
+
+<p>Plus, the opiniated part, your readers might dislike the games you&rsquo;re referencing,
+hence the comparison is a sure way to kill your pitch.</p>
+
+<p>Comparisons can be helpful if you just scribble down your ideas on a note
+to expand and iterate on them later. They should better not be part of the 1PPP.</p>
+
+<p>Plus, too many references will make you look like a copy-cat from the start,
+whereas descibing the game mechanics, even if they are 100% similar to the title
+you would be referencing, will not.</p>
+
+<h3>Platform: what will the game run on?</h3>
+
+<p>The part can be optional, but since your game mechanics might depend on it
+(touch controls for smartphone games VS joypad for console games VS mouse&amp;keyboard for PC games),
+it&rsquo;s probably better to note them.</p>
+
+<p>Besides controles, different platforms introduce different technical constraints,
+which,
+even if not addressed in the 1PPP,
+should be covered later in the GDD.</p>
+
+<p>Also, the platform part might decide the budget you can spend on the realization of the game.
+(See financial pitch).</p>
+
+<h2>tl;dr</h2>
+
+<p>With these rules laid out, I&rsquo;ll be applying them to my own game ideas and publish them as 1PPP on this blog from times to times.</p>
+]]></content>
+  </entry>
+  
+</feed>

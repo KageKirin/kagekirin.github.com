@@ -4,7 +4,7 @@
   <title><![CDATA[Code Alchemist]]></title>
   <link href="http://kagekirin.github.com/atom.xml" rel="self"/>
   <link href="http://kagekirin.github.com/"/>
-  <updated>2013-11-25T03:14:03+09:00</updated>
+  <updated>2014-01-02T22:21:43+09:00</updated>
   <id>http://kagekirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
@@ -12,6 +12,18 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Have a good Rutsch!]]></title>
+    <link href="http://kagekirin.github.com/blog/2013/12/31/have-a-good-rutsch/"/>
+    <updated>2013-12-31T21:50:23+09:00</updated>
+    <id>http://kagekirin.github.com/blog/2013/12/31/have-a-good-rutsch</id>
+    <content type="html"><![CDATA[<p>Have a good &ldquo;Rutsch&rdquo;!<br/>
+And happy new year 2014.</p>
+
+<p>Enjoy the horses!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[1PPP - 1 Page Project Pitch]]></title>
